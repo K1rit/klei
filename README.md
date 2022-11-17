@@ -1,5 +1,5 @@
 # KLEI
-##K##iborg ##L##ocate ##E##rrors ##I##rregularities
+'K'iborg 'L'ocate 'E'rrors 'I'rregularities
 ____
 
 ## Использовать только с разрешения соседей.
