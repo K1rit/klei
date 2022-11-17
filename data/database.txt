@@ -1,0 +1,40 @@
+{ "WORKS": 
+	[
+	{
+		"words_en": "I have the computer",
+		"words_ru": "У меня есть компьютер"
+	},		
+	{
+		"words_en": "I have the computer",
+		"words_ru": "У меня есть компьютер"
+	},		
+	{
+		"words_en": "I have the computer",
+		"words_ru": "У меня есть компьютер"
+	},
+	{
+		"words_en": "I have the computer",
+		"words_ru": "У меня есть компьютер"
+	},		
+	{
+		"words_en": "I have the computer",
+		"words_ru": "У меня есть компьютер"
+	},		
+	{
+		"words_en": "I have the computer",
+		"words_ru": "У меня есть компьютер"
+	},
+			{
+		"words_en": "I have the computer",
+		"words_ru": "У меня есть компьютер"
+	},		
+	{
+		"words_en": "I have the computer",
+		"words_ru": "У меня есть компьютер"
+	},		
+	{
+		"words_en": "I have the computer",
+		"words_ru": "У меня есть компьютер"
+	}
+	]
+}
