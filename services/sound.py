@@ -29,6 +29,8 @@ class Sound:
         playsound("sound/start_game.mp3")
 
     def play(self, type_sound):
+        if not play_sound:
+            return False
         if type_sound == Sound.BUTTON_PRESS:
             Thread(target=self.button_press, daemon=True).start()
         elif type_sound == Sound.START_GAME:
