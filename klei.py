@@ -61,7 +61,6 @@ def open_authors():
     window_authors = Toplevel()
     window_authors.grab_set()
 
-    window_authors.geometry("1200x720+500+300")
     window_authors_x = int(window.winfo_screenwidth() - WIDTH * 0.6) // 2
     window_authors_y = int((window.winfo_screenheight() - HEIGHT * 0.7) // 2)
     window_authors.geometry(f"{int(WIDTH * 0.6)}x{int(HEIGHT * 0.7)}+{window_authors_x}+{window_authors_y}")
