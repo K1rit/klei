@@ -6,7 +6,7 @@ from data.json_parser import JSONParser
 import time, random
 # Проверка вывода
 # Ахахахах, прекрасный пример
-A = "1"
+A = "123456789112345678921234567893"
 # Окно игры
 def open_play_game():
 
@@ -16,7 +16,8 @@ def open_play_game():
         print(f"Нажата кнопка: {ch} {num}")
         buttons[num].config(state="disabled")
 
-        game_data[level].put_char(ch)
+        x = game_data[level].put_char(ch)
+        print(x, game_data[level].get_proposal(), game_data[level].is_complete())
 
     def window_play_game_destroy():
         Sound().play(Sound.BUTTON_PRESS)
@@ -29,15 +30,38 @@ def open_play_game():
         # print(game_data[level].words_en)
         # print(game_data[level].words_ru)
         # print(game_data[level].category)
-        print(game_data[level].get_proposal())
+        # print(game_data[level].get_proposal())
 
-        width = len(A) * 23.7
+        line = game_data[level].get_proposal().split(" ")
+        new_lines = []
+        i = 0
+        cl = 0
+        new_lines.append("")
+
+        while i < len(line):
+            while i < len(line) and len(new_lines[cl] + line[i] + " ") <= 30:
+                new_lines[cl] += line[i] + " "
+                i += 1
+            new_lines.append("")
+            cl += 1
+
+        del new_lines[cl]
+        for i in range(len(new_lines)):
+            new_lines[i] = new_lines[i][0:len(new_lines[i]) - 1]
+
+        print(f"У нас {len(new_lines)} строк")
+
+        width = len(new_lines[0]) * 23.7
         start_x = (WIDTH - width) // 2
 
-        for i in range(len(Word)):
-            label_word = Label(window_play_game, text=A[i], font=("Arial", 18))
-            label_word.place(x=start_x + i * 24,  y=MARGIN * 4)
-            
+        for i in range(len(new_lines[0])):
+            if new_lines[0][i] != " ":
+                label_word = Label(window_play_game, text=new_lines[0][i], font=("Arial", 18))
+                label_word.place(x=start_x + i * 24, y=MARGIN * 4)
+            else:
+                label_word = Label(window_play_game, text=new_lines[0][i], background=MAIN_COLOR, font=("Arial", 18))
+                label_word.place(x=start_x + i * 24, y=MARGIN * 4)
+
     
     
     
