@@ -4,6 +4,7 @@ from setup import *
 from services.sound import Sound
 import time, random
 # Проверка вывода
+# Ахахахах, прекрасный пример
 A = "Собака"
 # Окно игры
 def open_play_game():
