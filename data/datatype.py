@@ -21,11 +21,31 @@ class Datatype:
                 self.enabled_chars.append(True)
         # print(self.enabled_chars)
 
+    def is_complete(self):
+        # Вернёт True, если пользователь угадал
+        # ВСЕ буквы в слове
+        ret = True
+        n = 0
+        while n < len(self.enabled_chars) and ret:
+            ret = ret and self.enabled_chars[n]
+            n += 1
+
+        return ret
+
     def put_char(self, ch):
+        # Вернёт, сколько символов угадано
+        # 0, если пользователь не угадал ничего
         ret = 0
+        tmp = self.words_en.upper()
+        for i in range(len(tmp)):
+            if ch == tmp[i] and not self.enabled_chars[i]:
+                self.enabled_chars[i] = True
+                ret += 1
         return ret
 
     def get_proposal(self):
+        # Вернёт строку, которую нужно показывать пользователю
+        # на текущем этапе игры
         ret = ""
         for i in range(len(self._words_en)):
             if self.enabled_chars[i]:

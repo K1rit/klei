@@ -1,9 +1,33 @@
+def load():
+    ret = dict()
+    try:
+        f = open('setup.dat', 'r', encoding="UTF-8")
+        data = f.readlines()
+        f.close()
+        for s in data:
+            s = s.split("=")
+            if s[0] == "level":
+                ret['level'] = s[1]
+    except FileNotFoundError:
+        f = open("setup.dat", "w", encoding="UTF-8")
+        f.write("level=0")
+        f.close()
+        ret = load()
+
+    return ret
+
+def save():
+    f = open("setup.dat", "w", encoding="UTF-8")
+    f.write(f"level={level}")
+    f.close()
+
 WIDTH = 800
 HEIGHT = 600
 MARGIN = 50
 VERSION = 0.1
 
-level = 0
+level = load()['level']
+
 
 font_button = ("Arial", 12)
 font_button_game = ("Arial", 14, "bold")
