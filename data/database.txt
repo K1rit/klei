@@ -4,16 +4,16 @@
         "CATEGORY": "Уровень 1. Приветствие",
         "WORDS": [
             {
-                "words_en": "Good evening!",
-                "words_ru": "Добрый вечер!"
+                "words_en": "Good morning! Good morning! Good morning! Good morning! Good morning!",
+                "words_ru": "Доброе утро!"
             },
             {
                 "words_en": "Good afternoon!",
                 "words_ru": "Добрый день!"
             },
             {
-                "words_en": "Good morning!",
-                "words_ru": "Доброе утро!"
+                "words_en": "Good evening!",
+                "words_ru": "Добрый вечер!"
             }
             ]
         },

@@ -14,7 +14,9 @@ def open_play_game():
     def pressed_char(ch: str, num: int):
         Sound().play(Sound.BUTTON_PRESS)
         print(f"Нажата кнопка: {ch} {num}")
-        buttons[num].config(state = "disabled")
+        buttons[num].config(state="disabled")
+
+        game_data[level].put_char(ch)
 
     def window_play_game_destroy():
         Sound().play(Sound.BUTTON_PRESS)
@@ -24,9 +26,14 @@ def open_play_game():
     def start_word(Word):
         shift = 0
 
+        # print(game_data[level].words_en)
+        # print(game_data[level].words_ru)
+        # print(game_data[level].category)
+        print(game_data[level].get_proposal())
+
         for i in range(len(Word)):
             label_word = Label(window_play_game, text="__", font=("Arial", 23))
-            label_word.place(x=HEIGHT-MARGIN*7.5 + shift, y=MARGIN*4)
+            label_word.place(x=HEIGHT - MARGIN * 7.5 + shift, y=MARGIN * 4)
             shift += 60
     
     
@@ -59,7 +66,7 @@ def open_play_game():
                 buttons.append(Button(window_play_game, command=lambda ch=keyboard[i][j], num=num_element: pressed_char(ch, num),
                                       text=keyboard[i][j], font=font_button_game,
                                       width=width_key, height=height_key))
-                buttons[-1].place(x=start_x + j * (width_key * 20), y=HEIGHT // 2 + i * 50)
+                buttons[-1].place(x=start_x + j * (width_key * 20), y=HEIGHT // 1.5 + i * 50)
                 num_element += 1
 
     Sound().play(Sound.START_GAME)
@@ -77,10 +84,8 @@ def open_play_game():
     dictionary()
     start_word(A)
 
-
     button_exit = Button(window_play_game, text="Сбежать", font=font_button, command = window_play_game_destroy, width=10, pady=3).place(relx=0.85, rely=0.9)
     button_question = Button(window_play_game, text="?", font=font_button, command = None, width=7, pady=3).place(relx=0.03, rely=0.9)
-
 
 # Окно авторов
 def open_authors():
@@ -141,6 +146,6 @@ button_exit = Button(window, text="Выход", font=font_button, command = quit
 button_authors = Button(window, text="Авторы", font=font_button, command = open_authors, width=30, pady=3).place(relx=0.5, rely=0.70, anchor=CENTER)
 
 
-game_data = JSONParser().get_list("data/database.txt", True)
+game_data = JSONParser().get_list("data/database.txt", False)
 
 window.mainloop()
