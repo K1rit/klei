@@ -1,80 +1,55 @@
-{ "WORKS": 
-	[
-	{
-		"words_en": "I have the computer",
-		"words_ru": "У меня есть компьютер"
-	},		
-	{
-		"words_en": "I have the computer",
-		"words_ru": "У меня есть компьютер"
-	},		
-	{
-		"words_en": "I have the computer",
-		"words_ru": "У меня есть компьютер"
-	},
-	{
-		"words_en": "I have the computer",
-		"words_ru": "У меня есть компьютер"
-	},		
-	{
-		"words_en": "I have the computer",
-		"words_ru": "У меня есть компьютер"
-	},		
-	{
-		"words_en": "I have the computer",
-		"words_ru": "У меня есть компьютер"
-	},
-			{
-		"words_en": "I have the computer",
-		"words_ru": "У меня есть компьютер"
-	},		
-	{
-		"words_en": "I have the computer",
-		"words_ru": "У меня есть компьютер"
-	},
-	{
-		"words_en": "I have the computer",
-		"words_ru": "У меня есть компьютер"
-	},
-	{
-		"words_en": "I have the computer",
-		"words_ru": "У меня есть компьютер"
-	},
-	{
-		"words_en": "I have the computer",
-		"words_ru": "У меня есть компьютер"
-	},
-	{
-		"words_en": "I have the computer",
-		"words_ru": "У меня есть компьютер"
-	},
-	{
-		"words_en": "I have the computer",
-		"words_ru": "У меня есть компьютер"
-	},
-	{
-		"words_en": "I have the computer",
-		"words_ru": "У меня есть компьютер"
-	},
-	{
-		"words_en": "I have the computer",
-		"words_ru": "У меня есть компьютер"
-	},
-	{
-		"words_en": "I have the computer",
-		"words_ru": "У меня есть компьютер"
-	},
-	{
-		"words_en": "I have the computer",
-		"words_ru": "У меня есть компьютер"
-	},
-	{
-		"words_en": "I have the computer",
-		"words_ru": "У меня есть компьютер"
-	},
-	{
-		"words_en": "I have the computer",
-		"words_ru": "У меня есть компьютер"
-	}
+{
+    "THEMES": [
+        {
+        "CATEGORY": "Уровень 1. Приветствие",
+        "WORDS": [
+            {
+                "words_en": "Good evening!",
+                "words_ru": "Добрый вечер!"
+            },
+            {
+                "words_en": "Good afternoon!",
+                "words_ru": "Добрый день!"
+            },
+            {
+                "words_en": "Good morning!",
+                "words_ru": "Доброе утро!"
+            }
+            ]
+        },
+        {
+        "CATEGORY": "Уровень 2. Стандартные фразы",
+        "WORDS": [
+            {
+                "words_en": "",
+                "words_ru": ""
+            },
+            {
+                "words_en": "",
+                "words_ru": ""
+            },
+            {
+                "words_en": "",
+                "words_ru": ""
+            }
+            ]
+        },
+        {
+        "CATEGORY": "Уровень 3. Вокзал",
+        "WORDS": [
+            {
+                "words_en": "",
+                "words_ru": ""
+            },
+            {
+                "words_en": "",
+                "words_ru": ""
+            },
+            {
+                "words_en": "",
+                "words_ru": ""
+            }
+            ]
+        }
 	]
 }

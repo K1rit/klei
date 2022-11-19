@@ -10,13 +10,25 @@ play_sound = True
 try:
     from playsound import playsound
 except ImportError:
-    print("Библиотека playsound не установлена. Установите её. ")
-    n = input("Установить? (Y/n): ")
-    if n.upper() == "Y":
+    from tkinter import messagebox
+    answer = messagebox.askyesno(
+        title="Нет библиотеки",
+        message="Если не установить модуль playsound, в программе не будут воспроизводиться звуки. Установить?")
+    if answer:
         pip.main(["install", "playsound==1.2.2"])
     else:
-        print("Звука не будет.")
         play_sound = False
+        messagebox.showerror("Ох-хо-хо", "Звуков не будет.")
+
+    # print("Библиотека playsound не установлена. Установите её. ")
+    # n = input("Установить? (Y/n): ")
+
+
+    # if n.upper() == "Y":
+    #     pip.main(["install", "playsound==1.2.2"])
+    # else:
+    #     print("Звука не будет.")
+    #     play_sound = False
 
 class Sound:
 

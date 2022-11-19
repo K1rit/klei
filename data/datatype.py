@@ -5,12 +5,21 @@
 
 class Datatype:
 
-    def __init__(self, en, ru):
+    def __init__(self, cat, en, ru):
+        self._category = cat
         self._words_en = en
         self._words_ru = ru
 
     def __str__(self):
-        return f"{self.words_en} / {self.words_ru}"
+        return f"{self.category}. {self.words_en} / {self.words_ru}"
+
+    @property
+    def category(self):
+        return self._category
+
+    @category.setter
+    def category(self, s):
+        self._category = s
 
     @property
     def words_en(self):

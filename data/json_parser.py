@@ -4,16 +4,27 @@ from data.datatype import Datatype
 """
     Объект можно не создавать, парсит указанный в filename файл.
     Файл должен быть в json-формате следующего вида:
-    { "WORKS": 
-        [ {
-            "words_en": "I have the computer",
-            "words_ru": "У меня есть компьютер"
-        },		
+{
+    "THEMES": [
         {
-            "words_en": "I have the computer",
-            "words_ru": "У меня есть компьютер"
-        } ]
-    }
+        "CATEGORY": "",
+        "WORDS": [
+            {
+                "words_en": "",
+                "words_ru": ""
+            },
+            {
+                "words_en": "",
+                "words_ru": ""
+            },
+            {
+                "words_en": "",
+                "words_ru": ""
+            }
+            ]
+        }
+        ]
+
 """
 
 
@@ -24,15 +35,17 @@ class JSONParser:
         res = []
         with open(filename, encoding="UTF-8") as jsf:
             data = json.load(jsf)
-            for p in data['WORKS']:
-                res.append(Datatype(p['words_en'], p['words_ru']))
+            for txt in data["THEMES"]:
+                for task in txt['WORDS']:
+                    res.append(Datatype(txt['CATEGORY'], task['words_en'], task['words_ru']))
+                    # print(txt['CATEGORY'], " ", end="")
+                    # print(task['words_en'], "/", task['words_ru'])
 
         if view:
             for i in range(len(res)):
                 print(i, res[i])
 
         return res
-
 
 if __name__ == "__main__":
     n = JSONParser().get_list("database.txt", True)
