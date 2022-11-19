@@ -3,6 +3,8 @@ HEIGHT = 600
 MARGIN = 50
 VERSION = 0.1
 
+level = 0
+
 font_button = ("Arial", 12)
 font_button_game = ("Arial", 14, "bold")
 font_authors_caption = ("Arial", 24, "bold")

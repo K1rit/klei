@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from setup import *
 from services.sound import Sound
+from data.json_parser import JSONParser
 import time, random
 # Проверка вывода
 # Ахахахах, прекрасный пример
@@ -9,9 +10,11 @@ A = "Собака"
 # Окно игры
 def open_play_game():
 
-    def pressed_char(ch: str):
+    # Метод, получающий нажатую кнопку
+    def pressed_char(ch: str, num: int):
         Sound().play(Sound.BUTTON_PRESS)
-        print(f"Нажата кнопка: {ch}")
+        print(f"Нажата кнопка: {ch} {num}")
+        buttons[num].place(x=1, y=2)
 
     def window_play_game_destroy():
         Sound().play(Sound.BUTTON_PRESS)
@@ -43,7 +46,7 @@ def open_play_game():
         #         shift_x = count = 0
         #         shift_y -= 50
         keyboard = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"]
-        buttons = []
+        num_element = 0
         for i in range(len(keyboard)):
 
             # Эта шняга нужна чтобы блоки клавиш располагались по горизонтальному центра окна
@@ -53,10 +56,11 @@ def open_play_game():
             start_x = (WIDTH - all_key_width) // 2
 
             for j in range(len(keyboard[i])):
-                buttons.append(Button(window_play_game, command=lambda ch=keyboard[i][j] : pressed_char(ch),
+                buttons.append(Button(window_play_game, command=lambda ch=keyboard[i][j], num=num_element: pressed_char(ch, num),
                                       text=keyboard[i][j], font=font_button_game,
                                       width=width_key, height=height_key))
                 buttons[-1].place(x=start_x + j * (width_key * 20), y=HEIGHT // 2 + i * 50)
+                num_element += 1
 
     Sound().play(Sound.START_GAME)
     window_play_game = Toplevel()
@@ -68,6 +72,8 @@ def open_play_game():
     window_play_game.geometry(f"{WIDTH}x{HEIGHT}+{window_play_game_x}+{window_play_game_y}")
     window_play_game["bg"] = MAIN_COLOR
     window_play_game.overrideredirect(1)
+
+    buttons = []
     dictionary()
     start_word(A)
 
@@ -91,7 +97,7 @@ def open_authors():
     window_authors_y = int((window.winfo_screenheight() - HEIGHT * 0.7) // 2)
     window_authors.geometry(f"{int(WIDTH * 0.6)}x{int(HEIGHT * 0.7)}+{window_authors_x}+{window_authors_y}")
     window_authors["bg"] = MAIN_COLOR
-    window_authors.overrideredirect(1)
+    window_authors.overrideredirect(0)
 
     button_exit = Button(window_authors, text="ОК", font=font_button, command=window_authors_destroy, width=10).place(relx=0.5, rely=0.90, anchor=CENTER)
 
@@ -119,8 +125,8 @@ window.title("Klei")
 
 # Окно по центру, рассчитывается от размеров экрана
 POS_X = window.winfo_screenwidth() // 2 - WIDTH // 4
-POS_Y = window.winfo_screenheight() // 2 - HEIGHT // 6
-window.geometry(f"{WIDTH // 2}x{HEIGHT // 3}+{POS_X}+{POS_Y}")
+POS_Y = window.winfo_screenheight() // 2 - HEIGHT // 4
+window.geometry(f"{WIDTH // 2}x{HEIGHT // 2}+{POS_X}+{POS_Y}")
 
 window.resizable(False, False)
 window.overrideredirect(1)
@@ -135,5 +141,6 @@ button_exit = Button(window, text="Выход", font=font_button, command = quit
 button_authors = Button(window, text="Авторы", font=font_button, command = open_authors, width=30, pady=3).place(relx=0.5, rely=0.70, anchor=CENTER)
 
 
+game_data = JSONParser().get_list("data/database.txt", True)
 
 window.mainloop()
