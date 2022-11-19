@@ -6,7 +6,7 @@ from data.json_parser import JSONParser
 import time, random
 # Проверка вывода
 # Ахахахах, прекрасный пример
-A = "Собака"
+A = "1"
 # Окно игры
 def open_play_game():
 
@@ -31,10 +31,13 @@ def open_play_game():
         # print(game_data[level].category)
         print(game_data[level].get_proposal())
 
+        width = len(A) * 23.7
+        start_x = (WIDTH - width) // 2
+
         for i in range(len(Word)):
-            label_word = Label(window_play_game, text="__", font=("Arial", 23))
-            label_word.place(x=HEIGHT - MARGIN * 7.5 + shift, y=MARGIN * 4)
-            shift += 60
+            label_word = Label(window_play_game, text=A[i], font=("Arial", 18))
+            label_word.place(x=start_x + i * 24,  y=MARGIN * 4)
+            
     
     
     
