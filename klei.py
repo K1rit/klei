@@ -3,7 +3,8 @@ from tkinter import ttk
 from setup import *
 from services.sound import Sound
 import time, random
-
+# Проверка вывода
+A = "Собака"
 # Окно игры
 def open_play_game():
     def window_play_game_destroy():
@@ -15,9 +16,10 @@ def open_play_game():
         shift = 0
 
         for i in range(len(Word)):
-            label_word = Label(window_play_game, text="__", font=("Arial", 13), bg="White")
-            label_word.place(x=HEIGHT-MARGIN*2 + shift, y=MARGIN*0.5)
-            shift += 20
+            label_word = Label(window_play_game, text="__", font=("Arial", 23))
+            label_word.place(x=HEIGHT-MARGIN*7.5 + shift, y=MARGIN*4)
+            shift += 60
+    
     
     
     # Клавиатура 
@@ -60,6 +62,7 @@ def open_play_game():
     window_play_game["bg"] = MAIN_COLOR
     window_play_game.overrideredirect(1)
     dictionary()
+    start_word(A)
 
 
     button_exit = Button(window_play_game, text="Сбежать", font=font_button, command = window_play_game_destroy, width=10, pady=3).place(relx=0.85, rely=0.9)
