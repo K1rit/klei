@@ -10,14 +10,16 @@ def open_play_game():
         Sound().play(Sound.BUTTON_PRESS)
         window_play_game.destroy()
 
+    #Для вывода
     def start_word(Word):
         shift = 0
 
         for i in range(len(Word)):
             label_word = Label(window_play_game, text="__", font=("Arial", 13), bg="White")
-            label_word.place(None)
+            label_word.place(x=HEIGHT-MARGIN*2 + shift, y=MARGIN*0.5)
             shift += 20
-
+    
+    
     # Клавиатура 
     def dictionary():
         # shift_x = shift_y = 0
@@ -25,7 +27,7 @@ def open_play_game():
         #
         # for i in range(ord("A"), ord("U") + 1):
         #     button = Button(window_play_game, text=chr(i), font=("Arial", 15, "bold"))
-        #     button.place(x = 550 - 100*2 + shift_x, y = 100*4.5 - shift_y)
+        #     button.place(x =  550- 100*2 + shift_x, y = 100*4.5 - shift_y)
         #     shift_x += 70
         #     count += 1
         #
