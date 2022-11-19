@@ -1,5 +1,6 @@
 WIDTH = 800
 HEIGHT = 600
+MARGIN = 30
 VERSION = 0.1
 
 font_button = ("Arial", 12)
