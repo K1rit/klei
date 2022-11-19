@@ -56,7 +56,7 @@ def open_play_game():
 
         for i in range(len(new_lines[0])):
             if new_lines[0][i] != " ":
-                label_word = Label(window_play_game, text=new_lines[0][i], font=("Arial", 18))
+                label_word = Label(window_play_game, text=new_lines[0][i], font=("Arial", 18), background=LABEL_WORDS_COLOR)
                 label_word.place(width=25, height=30, x=start_x + i * 26, y=MARGIN * 4)
             else:
                 label_word = Label(window_play_game, text=new_lines[0][i], background=MAIN_COLOR, font=("Arial", 18))
