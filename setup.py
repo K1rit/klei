@@ -37,6 +37,7 @@ font_authors_text = ("Arial", 11)
 # MAIN_COLOR = "#3c3f41"
 MAIN_COLOR = "#1976D2"
 TEXT_COLOR = "#FAFAFA"
+LABEL_WORDS_COLOR = "#BBDEFB"
 
 application_name = "KLEI"
 hard_text = "Создано для вас и вашего компьютера!*"
