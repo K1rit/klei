@@ -14,7 +14,7 @@ def open_play_game():
     def pressed_char(ch: str, num: int):
         Sound().play(Sound.BUTTON_PRESS)
         print(f"Нажата кнопка: {ch} {num}")
-        buttons[num].place(x=1, y=2)
+        buttons[num].config(state = "disabled")
 
     def window_play_game_destroy():
         Sound().play(Sound.BUTTON_PRESS)
