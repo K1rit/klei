@@ -10,7 +10,7 @@ def open_play_game():
         Sound().play(Sound.BUTTON_PRESS)
         window_play_game.destroy()
 
-    # Клавиши от A до U
+    # Клавиатура 
     def dictionary():
         # shift_x = shift_y = 0
         # count = 0
