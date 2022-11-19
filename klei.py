@@ -7,6 +7,11 @@ import time, random
 A = "Собака"
 # Окно игры
 def open_play_game():
+
+    def pressed_char(ch: str):
+        Sound().play(Sound.BUTTON_PRESS)
+        print(f"Нажата кнопка: {ch}")
+
     def window_play_game_destroy():
         Sound().play(Sound.BUTTON_PRESS)
         window_play_game.destroy()
@@ -47,7 +52,8 @@ def open_play_game():
             start_x = (WIDTH - all_key_width) // 2
 
             for j in range(len(keyboard[i])):
-                buttons.append(Button(window_play_game, text=keyboard[i][j], font=font_button_game, 
+                buttons.append(Button(window_play_game, command=lambda ch=keyboard[i][j] : pressed_char(ch),
+                                      text=keyboard[i][j], font=font_button_game,
                                       width=width_key, height=height_key))
                 buttons[-1].place(x=start_x + j * (width_key * 20), y=HEIGHT // 2 + i * 50)
 
