@@ -2,13 +2,21 @@ from tkinter import *
 from tkinter import ttk
 from setup import *
 from services.sound import Sound
-import time
+import time, random
 
 # Окно игры
 def open_play_game():
     def window_play_game_destroy():
         Sound().play(Sound.BUTTON_PRESS)
         window_play_game.destroy()
+
+    def start_word(Word):
+        shift = 0
+
+        for i in range(len(Word)):
+            label_word = Label(window_play_game, text="__", font=("Arial", 13), bg="White")
+            label_word.place(None)
+            shift += 20
 
     # Клавиатура 
     def dictionary():
