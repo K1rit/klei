@@ -14,14 +14,20 @@ def reset_game():
 # Окно игры
 def open_play_game():
 
+    Sound().play(Sound.OK_LETS_GO)
+
     # Метод, получающий нажатую кнопку
     def pressed_char(ch: str, num: int):
-        Sound().play(Sound.BUTTON_PRESS)
         print(f"Нажата кнопка: {ch} {num}")
         buttons[num].config(state="disabled")
 
-        x = game_data[level].put_char(ch)
-        print(x, game_data[level].get_proposal(), game_data[level].is_complete())
+        count_good_chars = game_data[level].put_char(ch)
+        if count_good_chars > 0:
+            Sound().play(Sound.GOOD_CHAR)
+        else:
+            Sound().play(Sound.BUTTON_PRESS)
+
+        print(count_good_chars, game_data[level].get_proposal(), game_data[level].is_complete())
 
     def window_play_game_destroy():
         Sound().play(Sound.BUTTON_PRESS)
@@ -80,7 +86,6 @@ def open_play_game():
                 buttons[-1].place(x=start_x + j * (width_key * 20), y=HEIGHT // 1.6 + i * 50)
                 num_element += 1
 
-    Sound().play(Sound.START_GAME)
     window_play_game = Toplevel()
     window_play_game.grab_set()
 
@@ -100,7 +105,6 @@ def open_play_game():
     label_category = Label(window_play_game, text=game_data[level].category, font=font_caption_text, background=MAIN_COLOR, foreground=LABEL_WORDS_COLOR)
     label_width = label_category.winfo_reqwidth()
     label_category_x = (WIDTH - label_width) // 2
-    print(label_category_x, label_width)
     label_category.place(x=label_category_x, rely=0.91)
 
     button_exit = Button(window_play_game, text="Сбежать", font=font_button, command=window_play_game_destroy, width=10, pady=3)
