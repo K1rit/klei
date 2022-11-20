@@ -1,12 +1,16 @@
+import tkinter
 from tkinter import *
 from tkinter import ttk
 from setup import *
 from services.sound import Sound
 from data.json_parser import JSONParser
 import time, random
-# Проверка вывода
-# Ахахахах, прекрасный пример
-A = "123456789112345678921234567893"
+
+# Сброс всех настроек игры
+def reset_game():
+    level = 0
+    open_play_game()
+
 # Окно игры
 def open_play_game():
 
@@ -23,48 +27,28 @@ def open_play_game():
         Sound().play(Sound.BUTTON_PRESS)
         window_play_game.destroy()
 
-    #Для вывода
-    def start_word(Word):
-        shift = 0
-
+    # Для вывода
+    def start_word():
         # print(game_data[level].words_en)
         # print(game_data[level].words_ru)
         # print(game_data[level].category)
         # print(game_data[level].get_proposal())
 
-        line = game_data[level].get_proposal().split(" ")
-        new_lines = []
-        i = 0
-        cl = 0
-        new_lines.append("")
+        words_lines = game_data[level].get_proposal()
 
-        while i < len(line):
-            while i < len(line) and len(new_lines[cl] + line[i] + " ") <= 30:
-                new_lines[cl] += line[i] + " "
-                i += 1
-            new_lines.append("")
-            cl += 1
+        print(f"У нас {len(words_lines)} строк")
 
-        del new_lines[cl]
-        for i in range(len(new_lines)):
-            new_lines[i] = new_lines[i][0:len(new_lines[i]) - 1]
-
-        print(f"У нас {len(new_lines)} строк")
-
-        width = len(new_lines[0]) * 26
+        width = len(words_lines[0]) * 26
         start_x = (WIDTH - width) // 2
 
-        for i in range(len(new_lines[0])):
-            if new_lines[0][i] != " ":
-                label_word = Label(window_play_game, text=new_lines[0][i], font=("Arial", 18), background=LABEL_WORDS_COLOR)
+        for i in range(len(words_lines[0])):
+            if words_lines[0][i] != " ":
+                label_word = Label(window_play_game, text=words_lines[0][i], font=("Arial", 18), background=LABEL_WORDS_COLOR)
                 label_word.place(width=25, height=30, x=start_x + i * 26, y=MARGIN * 4)
             else:
-                label_word = Label(window_play_game, text=new_lines[0][i], background=MAIN_COLOR, font=("Arial", 18))
+                label_word = Label(window_play_game, text=words_lines[0][i], background=MAIN_COLOR, font=("Arial", 18))
                 label_word.place(x=start_x + i * 26, y=MARGIN * 4)
 
-    
-    
-    
     # Клавиатура 
     def dictionary():
         # shift_x = shift_y = 0
@@ -109,7 +93,7 @@ def open_play_game():
 
     buttons = []
     dictionary()
-    start_word(A)
+    start_word()
 
     button_exit = Button(window_play_game, text="Сбежать", font=font_button, command = window_play_game_destroy, width=10, pady=3).place(relx=0.85, rely=0.9)
     button_question = Button(window_play_game, text="?", font=font_button, command = None, width=7, pady=3).place(relx=0.03, rely=0.9)
@@ -129,7 +113,7 @@ def open_authors():
     window_authors_y = int((window.winfo_screenheight() - HEIGHT * 0.7) // 2)
     window_authors.geometry(f"{int(WIDTH * 0.6)}x{int(HEIGHT * 0.7)}+{window_authors_x}+{window_authors_y}")
     window_authors["bg"] = MAIN_COLOR
-    window_authors.overrideredirect(0)
+    window_authors.overrideredirect(1)
 
     button_exit = Button(window_authors, text="ОК", font=font_button, command=window_authors_destroy, width=10).place(relx=0.5, rely=0.90, anchor=CENTER)
 
@@ -168,10 +152,18 @@ window["bg"] = MAIN_COLOR
 
 label_version = ttk.Label(text=f"Версия {VERSION}", anchor="sw", background=MAIN_COLOR, foreground=TEXT_COLOR).place(relx=0.03, rely=0.87)
 
-button_game = Button(window, text="Играть", font=font_button, command = open_play_game, width=30, pady=3).place(relx=0.5, rely=0.30, anchor=CENTER)
-button_exit = Button(window, text="Выход", font=font_button, command = quit_game, width=30, pady=3).place(relx=0.5, rely=0.50, anchor=CENTER)
-button_authors = Button(window, text="Авторы", font=font_button, command = open_authors, width=30, pady=3).place(relx=0.5, rely=0.70, anchor=CENTER)
+button_continue = Button(window, text="Продолжить", font=font_button, command = open_play_game, width=30, pady=3)
+button_continue.place(relx=0.5, rely=0.20, anchor=CENTER)
 
+button_game = Button(window, text="Начать заново", font=font_button, command = reset_game, width=30, pady=3)
+button_game.place(relx=0.5, rely=0.35, anchor=CENTER)
+button_exit = Button(window, text="Выход", font=font_button, command = quit_game, width=30, pady=3)
+button_exit.place(relx=0.5, rely=0.50, anchor=CENTER)
+button_authors = Button(window, text="Авторы", font=font_button, command = open_authors, width=30, pady=3)
+button_authors.place(relx=0.5, rely=0.65, anchor=CENTER)
+
+if level == 0:
+    button_continue["state"] = tkinter.DISABLED
 
 game_data = JSONParser().get_list("data/database.txt", False)
 

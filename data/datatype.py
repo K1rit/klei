@@ -9,6 +9,7 @@ class Datatype:
         self._category = cat
         self._words_en = en
         self._words_ru = ru
+        self.multilines = None
 
         self.enabled_chars = []
         tmp = self._words_en.upper()
@@ -19,7 +20,7 @@ class Datatype:
                 self.enabled_chars.append(False)
             else:
                 self.enabled_chars.append(True)
-        # print(self.enabled_chars)
+
 
     def is_complete(self):
         # Вернёт True, если пользователь угадал
@@ -43,16 +44,48 @@ class Datatype:
                 ret += 1
         return ret
 
+    def create_multilines(self, line):
+        line = line.split(" ")
+        new_lines = []
+        i = 0
+        cl = 0
+        new_lines.append("")
+
+        while i < len(line):
+            while i < len(line) and len(new_lines[cl] + line[i] + " ") <= 30:
+                new_lines[cl] += line[i] + " "
+                i += 1
+            new_lines.append("")
+            cl += 1
+
+        del new_lines[cl]
+        for i in range(len(new_lines)):
+            new_lines[i] = new_lines[i][0:len(new_lines[i]) - 1]
+
+        return new_lines
+
     def get_proposal(self):
-        # Вернёт строку, которую нужно показывать пользователю
+        # Вернёт список строк, который нужно показывать пользователю
         # на текущем этапе игры
-        ret = ""
-        for i in range(len(self._words_en)):
-            if self.enabled_chars[i]:
-                ret += self.words_en[i]
-            else:
-                ret += "_"
-        return ret
+
+        # Получить разбитые строки длиной макс=30 символов
+        if self.multilines is None:
+            self.multilines = self.create_multilines(self.words_en)
+
+        # Обработать вывод, заменив все не открытые буквы подчёркиванием
+        # и наоборот, минуя знаки препинания
+        count = 0
+        for i in range(len(self.multilines)):
+            new_line = ""
+            for j in range(len(self.multilines[i])):
+                if self.enabled_chars[count]:
+                    new_line += self.words_en[count]
+                else:
+                    new_line += "_"
+                count += 1
+            self.multilines[i] = new_line
+
+        return self.multilines
 
 
     def __str__(self):
