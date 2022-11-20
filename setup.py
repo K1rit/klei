@@ -57,6 +57,7 @@ note_text = """* Только для наружного применения. П
 level = 0
 state = ["5", "4", "3", "неуд.", "кол", "вас выгнали из школы"]
 state_lives = 0
+letter_box = 26
 # print(state[level_state])
 # score = кол-во букв * 2
 # sub_score = 8
