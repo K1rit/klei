@@ -70,14 +70,14 @@ def open_play_game():
             # Эта шняга нужна чтобы блоки клавиш располагались по горизонтальному центра окна
             width_key = 2
             height_key = 1
-            all_key_width = len(keyboard[i]) * width_key * 20
+            all_key_width = len(keyboard[i]) * width_key * 19.5
             start_x = (WIDTH - all_key_width) // 2
 
             for j in range(len(keyboard[i])):
                 buttons.append(Button(window_play_game, command=lambda ch=keyboard[i][j], num=num_element: pressed_char(ch, num),
                                       text=keyboard[i][j], font=font_button_game,
                                       width=width_key, height=height_key))
-                buttons[-1].place(x=start_x + j * (width_key * 20), y=HEIGHT // 1.5 + i * 50)
+                buttons[-1].place(x=start_x + j * (width_key * 20), y=HEIGHT // 1.6 + i * 50)
                 num_element += 1
 
     Sound().play(Sound.START_GAME)
@@ -95,8 +95,17 @@ def open_play_game():
     dictionary()
     start_word()
 
-    button_exit = Button(window_play_game, text="Сбежать", font=font_button, command = window_play_game_destroy, width=10, pady=3).place(relx=0.85, rely=0.9)
-    button_question = Button(window_play_game, text="?", font=font_button, command = None, width=7, pady=3).place(relx=0.03, rely=0.9)
+    # Метка - название категории
+    label_category = Label(window_play_game, text=game_data[level].category, font=font_caption_text, background=MAIN_COLOR, foreground=LABEL_WORDS_COLOR)
+    label_width = label_category.winfo_reqwidth()
+    label_category_x = (WIDTH - label_width) // 2
+    print(label_category_x, label_width)
+    label_category.place(x=label_category_x, rely=0.91)
+
+    button_exit = Button(window_play_game, text="Сбежать", font=font_button, command=window_play_game_destroy, width=10, pady=3)
+    button_exit.place(relx=0.85, rely=0.9)
+    button_question = Button(window_play_game, text="?", font=font_button, command = None, width=7, pady=3)
+    button_question.place(relx=0.03, rely=0.9)
 
 # Окно авторов
 def open_authors():
@@ -115,23 +124,28 @@ def open_authors():
     window_authors["bg"] = MAIN_COLOR
     window_authors.overrideredirect(1)
 
-    button_exit = Button(window_authors, text="ОК", font=font_button, command=window_authors_destroy, width=10).place(relx=0.5, rely=0.90, anchor=CENTER)
+    button_exit = Button(window_authors, text="ОК", font=font_button, command=window_authors_destroy, width=10)
+    button_exit.place(relx=0.5, rely=0.90, anchor=CENTER)
 
     # KLEI
     label_app_name = ttk.Label(window_authors, text=application_name, font=font_authors_caption, background=MAIN_COLOR,
-                              foreground=TEXT_COLOR).place(relx=0.03, rely=0.04)
+                              foreground=TEXT_COLOR)
+    label_app_name.place(relx=0.03, rely=0.04)
 
     # Слоган, типа что-то того
     label_hard_text = ttk.Label(window_authors, text=hard_text, font=("Arial", 13, "bold"), background=MAIN_COLOR,
-                              foreground=TEXT_COLOR).place(relx=0.03, rely=0.15)
+                              foreground=TEXT_COLOR)
+    label_hard_text.place(relx=0.03, rely=0.15)
 
     # Текст об авторах
     label_text_authors = ttk.Label(window_authors, text=author_text, font=font_authors_text, background=MAIN_COLOR,
-                              foreground=TEXT_COLOR).place(relx=0.03, rely=0.27)
+                              foreground=TEXT_COLOR)
+    label_text_authors.place(relx=0.03, rely=0.27)
 
     # Сноска
     label_hard_text = ttk.Label(window_authors, text=note_text, font=("Arial", 9, "bold"), background=MAIN_COLOR,
-                              foreground=TEXT_COLOR).place(relx=0.03, rely=0.71)
+                              foreground=TEXT_COLOR)
+    label_hard_text.place(relx=0.03, rely=0.71)
 
 def quit_game():
     window.quit()
@@ -141,8 +155,8 @@ window.title("Klei")
 
 # Окно по центру, рассчитывается от размеров экрана
 POS_X = window.winfo_screenwidth() // 2 - WIDTH // 4
-POS_Y = window.winfo_screenheight() // 2 - HEIGHT // 4
-window.geometry(f"{WIDTH // 2}x{HEIGHT // 2}+{POS_X}+{POS_Y}")
+POS_Y = window.winfo_screenheight() // 2 - HEIGHT // 6
+window.geometry(f"{WIDTH // 2}x{int(HEIGHT // 2.5)}+{POS_X}+{POS_Y}")
 
 window.resizable(False, False)
 window.overrideredirect(1)
@@ -154,17 +168,16 @@ label_version = ttk.Label(text=f"Версия {VERSION}", anchor="sw", backgroun
 
 button_continue = Button(window, text="Продолжить", font=font_button, command = open_play_game, width=30, pady=3)
 button_continue.place(relx=0.5, rely=0.20, anchor=CENTER)
-
 button_game = Button(window, text="Начать заново", font=font_button, command = reset_game, width=30, pady=3)
-button_game.place(relx=0.5, rely=0.35, anchor=CENTER)
+button_game.place(relx=0.5, rely=0.38, anchor=CENTER)
 button_exit = Button(window, text="Выход", font=font_button, command = quit_game, width=30, pady=3)
-button_exit.place(relx=0.5, rely=0.50, anchor=CENTER)
+button_exit.place(relx=0.5, rely=0.56, anchor=CENTER)
 button_authors = Button(window, text="Авторы", font=font_button, command = open_authors, width=30, pady=3)
-button_authors.place(relx=0.5, rely=0.65, anchor=CENTER)
+button_authors.place(relx=0.5, rely=0.74, anchor=CENTER)
 
 if level == 0:
     button_continue["state"] = tkinter.DISABLED
 
-game_data = JSONParser().get_list("data/database.txt", False)
+game_data = JSONParser().get_list("data/database.dat", False)
 
 window.mainloop()
