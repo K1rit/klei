@@ -39,7 +39,8 @@ def open_play_game():
         # print(game_data[level].words_ru)
         # print(game_data[level].category)
         # print(game_data[level].get_proposal())
-
+        
+        # ширина строки в пикселях
         words_lines = game_data[level].get_proposal()
 
         print(f"У нас {len(words_lines)} строк")
@@ -48,13 +49,21 @@ def open_play_game():
         width_string = len(words_lines[0]) * letter_box
         start_x = (WIDTH - width_string) // 2
 
+        height_string = len(words_lines[1]) * letter_box_height
+        start_y = (HEIGHT - height_string) // 2
+
+        
+        
+
         for i in range(len(words_lines[0])):
             if words_lines[0][i] != " ":
                 label_word = Label(window_play_game, text=words_lines[0][i], font=("Arial", 18), background=LABEL_WORDS_COLOR)
-                label_word.place(width=25, height=30, x=start_x + i * letter_box, y=MARGIN * 4)
+                label_word.place(width=25, height=30, y=start_y * letter_box_height, x=start_x + i * letter_box)
             else:
                 label_word = Label(window_play_game, text=words_lines[0][i], background=MAIN_COLOR, font=("Arial", 18))
-                label_word.place(width=25, height=30, x=start_x + i * letter_box, y=MARGIN * 4)
+                label_word.place(width=25, height=30, y=start_y * letter_box_height, x=start_x + i * letter_box)
+
+            
 
     # Клавиатура 
     def dictionary():
