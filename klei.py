@@ -96,7 +96,6 @@ def open_play_game():
     window_play_game["bg"] = MAIN_COLOR
     window_play_game.overrideredirect(1)
 
-
     buttons = []
     dictionary()
     start_word()
@@ -107,10 +106,14 @@ def open_play_game():
     label_category_x = (WIDTH - label_width) // 2
     label_category.place(x=label_category_x, rely=0.91)
 
-    button_exit = Button(window_play_game, text="Сбежать", font=font_button, command=window_play_game_destroy, width=10, pady=3)
-    button_exit.place(relx=0.85, rely=0.9)
-    button_question = Button(window_play_game, text="?", font=font_button, command = None, width=7, pady=3)
-    button_question.place(relx=0.03, rely=0.9)
+#    button_exit = Button(window_play_game, text="Сбежать", font=font_button, command=window_play_game_destroy, width=10, pady=3)
+#    button_exit.place(relx=0.85, rely=0.9)
+
+    Button(window_play_game, text="Сбежать", font=font_button, command=window_play_game_destroy, width=10, pady=3).place(relx=0.85, rely=0.9)
+    Button(window_play_game, text="?", font=font_button, command=None, width=7, pady=3).place(relx=0.03, rely=0.9)
+
+#    button_question = Button(window_play_game, text="?", font=font_button, command = None, width=7, pady=3)
+#    button_question.place(relx=0.03, rely=0.9)
 
 # Окно авторов
 def open_authors():
@@ -169,14 +172,18 @@ window.overrideredirect(1)
 # Фоновый цвет в HEX
 window["bg"] = MAIN_COLOR
 
-label_version = ttk.Label(text=f"Версия {VERSION}", anchor="sw", background=MAIN_COLOR, foreground=TEXT_COLOR).place(relx=0.03, rely=0.87)
+label_version = ttk.Label(text=f"Версия {VERSION}", anchor="sw", background=MAIN_COLOR, foreground=TEXT_COLOR)
+label_version.place(relx=0.03, rely=0.87)
 
 button_continue = Button(window, text="Продолжить", font=font_button, command = open_play_game, width=30, pady=3)
 button_continue.place(relx=0.5, rely=0.20, anchor=CENTER)
+
 button_game = Button(window, text="Начать заново", font=font_button, command = reset_game, width=30, pady=3)
 button_game.place(relx=0.5, rely=0.38, anchor=CENTER)
+
 button_exit = Button(window, text="Выход", font=font_button, command = quit_game, width=30, pady=3)
 button_exit.place(relx=0.5, rely=0.56, anchor=CENTER)
+
 button_authors = Button(window, text="Авторы", font=font_button, command = open_authors, width=30, pady=3)
 button_authors.place(relx=0.5, rely=0.74, anchor=CENTER)
 
