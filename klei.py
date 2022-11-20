@@ -57,18 +57,7 @@ def open_play_game():
 
     # Клавиатура 
     def dictionary():
-        # shift_x = shift_y = 0
-        # count = 0
-        #
-        # for i in range(ord("A"), ord("U") + 1):
-        #     button = Button(window_play_game, text=chr(i), font=("Arial", 15, "bold"))
-        #     button.place(x =  550- 100*2 + shift_x, y = 100*4.5 - shift_y)
-        #     shift_x += 70
-        #     count += 1
-        #
-        #     if count == 7:
-        #         shift_x = count = 0
-        #         shift_y -= 50
+
         keyboard = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"]
         num_element = 0
         for i in range(len(keyboard)):
