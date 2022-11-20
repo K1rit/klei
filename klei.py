@@ -47,7 +47,7 @@ def open_play_game():
                 label_word.place(width=25, height=30, x=start_x + i * 26, y=MARGIN * 4)
             else:
                 label_word = Label(window_play_game, text=words_lines[0][i], background=MAIN_COLOR, font=("Arial", 18))
-                label_word.place(x=start_x + i * 26, y=MARGIN * 4)
+                label_word.place(width=25, height=30, x=start_x + i * 26, y=MARGIN * 4)
 
     # Клавиатура 
     def dictionary():
@@ -90,6 +90,7 @@ def open_play_game():
     window_play_game.geometry(f"{WIDTH}x{HEIGHT}+{window_play_game_x}+{window_play_game_y}")
     window_play_game["bg"] = MAIN_COLOR
     window_play_game.overrideredirect(1)
+
 
     buttons = []
     dictionary()
