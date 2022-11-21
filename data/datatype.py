@@ -38,6 +38,7 @@ class Datatype:
         # 0, если пользователь не угадал ничего
         ret = 0
         tmp = self.words_en.upper()
+        print(self.words_en.upper())
         for i in range(len(tmp)):
             if ch == tmp[i] and not self.enabled_chars[i]:
                 self.enabled_chars[i] = True
@@ -53,14 +54,24 @@ class Datatype:
 
         while i < len(line):
             while i < len(line) and len(new_lines[cl] + line[i] + " ") <= 30:
-                new_lines[cl] += line[i] + " "
+                if len(new_lines[cl] + line[i] + " ") <= 30:
+                    new_lines[cl] += line[i] + " "
+                else:
+                    new_lines[cl] += line[i]
                 i += 1
-            new_lines.append("")
-            cl += 1
+            if i < len(line):
+                new_lines.append("")
+                cl += 1
 
-        del new_lines[cl]
-        for i in range(len(new_lines)):
-            new_lines[i] = new_lines[i][0:len(new_lines[i]) - 1]
+        print(f"new lines: {new_lines[cl]}")
+        if len(new_lines[cl]) == 0:
+            del new_lines[cl]
+
+        # for i in range(len(new_lines)):
+        #     new_lines[i] = new_lines[i][0:len(new_lines[i]) - 1]
+
+        if new_lines[len(new_lines) - 1][-1] == " ":
+            new_lines[len(new_lines) - 1] = new_lines[len(new_lines) - 1][0:len(new_lines[len(new_lines) - 1]) - 1]
 
         return new_lines
 
@@ -71,6 +82,8 @@ class Datatype:
         # Получить разбитые строки длиной макс=30 символов
         if self.multilines is None:
             self.multilines = self.create_multilines(self.words_en)
+
+        print(f"У нас {self.multilines}")
 
         # Обработать вывод, заменив все не открытые буквы подчёркиванием
         # и наоборот, минуя знаки препинания
@@ -84,6 +97,12 @@ class Datatype:
                     new_line += "_"
                 count += 1
             self.multilines[i] = new_line
+
+            # Удалим начальный и хвостовой пробелы, если они есть
+            #if self.multilines[i][0] == " ":
+            #    self.multilines[i] = self.multilines[i][1:len(self.multilines[i])]
+            #if self.multilines[i][-1] == " ":
+            #    self.multilines[i] = self.multilines[i][0:len(self.multilines[i]) - 1]
 
         return self.multilines
 

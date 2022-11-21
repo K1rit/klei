@@ -37,8 +37,8 @@ class Sound:
         playsound("sound/good_char.mp3")
 
     def ok_lets_go(self):
-        #playsound("sound/ok_go.mp3")
-        return False
+        # playsound("sound/ok_go.mp3")
+        playsound("sound/start_game.mp3")
 
 
     def play(self, type_sound):
