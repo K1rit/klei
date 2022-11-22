@@ -13,6 +13,7 @@ def reset_game():
 
 # Функция когда чел соберёт всё
 def win_round():
+    Sound().play(Sound.WIN_ROUND)
     for i in range(len(buttons)):
         buttons[i].destroy()
 
