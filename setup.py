@@ -36,9 +36,17 @@ font_authors_text = ("Arial", 11)
 font_caption_text = ("Arial", 13, "bold")
 
 # MAIN_COLOR = "#3c3f41"
-MAIN_COLOR = "#1976D2"
+# MAIN_COLOR = "#1976D2"
+MAIN_COLOR = "#512DA8"
+WHITE_COLOR = "#FFFFFF"
 TEXT_COLOR = "#FAFAFA"
-LABEL_WORDS_COLOR = "#BBDEFB"
+# LABEL_WORDS_COLOR = "#BBDEFB"
+# BACKGROUND_LABEL_COLOR = "#3f92e4"
+BACKGROUND_LABEL_COLOR = "#aed257"
+LABEL_TEXT_COLOR = "#1A1A1A"
+
+
+
 
 application_name = "KLEI"
 hard_text = "Создано для вас и вашего компьютера!*"

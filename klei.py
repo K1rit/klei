@@ -11,6 +11,11 @@ def reset_game():
     level = 0
     open_play_game()
 
+# Функция когда чел соберёт всё
+def win_round():
+    for i in range(len(buttons)):
+        buttons[i].destroy()
+
 # Окно игры
 def open_play_game():
 
@@ -20,14 +25,29 @@ def open_play_game():
     def pressed_char(ch: str, num: int):
         print(f"Нажата кнопка: {ch} {num}")
         buttons[num].config(state="disabled")
+        buttons[num]['text'] = ":)"
 
         count_good_chars = game_data[level].put_char(ch)
+
+        if game_data[level].is_complete():
+            win_round()
+
         if count_good_chars > 0:
             Sound().play(Sound.GOOD_CHAR)
         else:
             Sound().play(Sound.BUTTON_PRESS)
+        # Если пользователь угадал БОЛЬШЕ 0 букв,
+        # то удаляем все Label и заново их перерисовываем
+        if count_good_chars > 0:
+            for i in range(len(word_labels)):
+                word_labels[i].destroy()
+            word_labels.clear()
+            print("qwe")
+            start_word()
 
         print(count_good_chars, game_data[level].get_proposal(), game_data[level].is_complete())
+
+
 
     def window_play_game_destroy():
         Sound().play(Sound.BUTTON_PRESS)
@@ -46,22 +66,39 @@ def open_play_game():
         print(f"У нас {len(words_lines)} строк")
         print(f"У нас {words_lines}")
 
-        width_string = len(words_lines[0]) * letter_box
-        start_x = (WIDTH - width_string) // 2
+        height_string = len(words_lines) * letter_box_height
+        start_y = (HEIGHT - height_string) // 2 - 50
 
-        height_string = len(words_lines[1]) * letter_box_height
-        start_y = (HEIGHT - height_string) // 2
+        code_a = ord("A")
+        code_z = ord("Z")
 
-        
-        
+        for i in range(len(words_lines)):
 
-        for i in range(len(words_lines[0])):
-            if words_lines[0][i] != " ":
-                label_word = Label(window_play_game, text=words_lines[0][i], font=("Arial", 18), background=LABEL_WORDS_COLOR)
-                label_word.place(width=25, height=30, y=start_y * letter_box_height, x=start_x + i * letter_box)
-            else:
-                label_word = Label(window_play_game, text=words_lines[0][i], background=MAIN_COLOR, font=("Arial", 18))
-                label_word.place(width=25, height=30, y=start_y * letter_box_height, x=start_x + i * letter_box)
+            count_chars = len(words_lines[i])
+            if words_lines[i][-1] == " ":
+                count_chars -= 1
+
+            width_string = count_chars * letter_box
+            start_x = (WIDTH - width_string) // 2
+
+            for j in range(len(words_lines[i])):
+                ch = words_lines[i][j]
+                # if (ord(ch.upper()) >= code_a or ch == "_") and (ord(ch.upper()) <= code_z or ch == "_"):
+                if ch == "_":
+                    word_labels.append(Label(window_play_game, text=ch, font=("Arial", 18), foreground=LABEL_TEXT_COLOR, background=BACKGROUND_LABEL_COLOR))
+                    word_labels[-1].place(x=start_x + j * letter_box, y=start_y + i * (letter_box_height + 4), width=25, height=30)
+                elif ord(ch.upper()) >= code_a and ord(ch.upper()) <= code_z:
+                    word_labels.append(
+                        Label(window_play_game, text=ch, font=("Arial", 18), foreground=WHITE_COLOR,
+                              background=MAIN_COLOR))
+                    word_labels[-1].place(x=start_x + j * letter_box, y=start_y + i * (letter_box_height + 4),
+                                          width=25, height=30)
+                elif ch == " ":
+                    word_labels.append(Label(window_play_game, text=ch, font=("Arial", 18), background=MAIN_COLOR))
+                    word_labels[-1].place(x=start_x + j * letter_box, y=start_y + i * (letter_box_height + 4), width=25, height=30)
+                else:
+                    word_labels.append(Label(window_play_game, text=ch, font=("Arial", 18), foreground=WHITE_COLOR, background=MAIN_COLOR))
+                    word_labels[-1].place(x=start_x + j * letter_box, y=start_y + i * (letter_box_height + 4), width=25, height=30)
 
             
 
@@ -95,12 +132,11 @@ def open_play_game():
     window_play_game["bg"] = MAIN_COLOR
     window_play_game.overrideredirect(1)
 
-    buttons = []
     dictionary()
     start_word()
 
     # Метка - название категории
-    label_category = Label(window_play_game, text=game_data[level].category, font=font_caption_text, background=MAIN_COLOR, foreground=LABEL_WORDS_COLOR)
+    label_category = Label(window_play_game, text=game_data[level].category, font=font_caption_text, background=MAIN_COLOR, foreground=TEXT_COLOR)
     label_width = label_category.winfo_reqwidth()
     label_category_x = (WIDTH - label_width) // 2
     label_category.place(x=label_category_x, rely=0.91)
@@ -156,6 +192,13 @@ def open_authors():
 
 def quit_game():
     window.quit()
+
+# =====================================================================================================================
+# ОТСЮДА НАЧИНАЕТСЯ ГЛАВНЫЙ КОД, ЫЫЫЫЫ
+# =====================================================================================================================
+
+word_labels = []
+buttons = []
 
 window = Tk()
 window.title("Klei")
