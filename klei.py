@@ -25,8 +25,13 @@ def open_play_game():
     # Метод, получающий нажатую кнопку
     def pressed_char(ch: str, num: int):
         print(f"Нажата кнопка: {ch} {num}")
-        buttons[num].config(state="disabled")
-        buttons[num]['text'] = ":)"
+        
+        if NONE:
+           buttons[num].config(state="disabled")
+           buttons[num]['text'] = ":D"
+        else:
+           buttons[num].config(state="disabled")
+           buttons[num]['text'] = ":|"
 
         count_good_chars = game_data[level].put_char(ch)
 
