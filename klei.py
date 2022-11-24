@@ -29,6 +29,8 @@ def open_play_game():
         # Получит, сколько символов УГАДАНО
         count_good_chars = game_data[level].put_char(ch)
 
+        print(game_data[level].get_translate_ru())
+
         if count_good_chars > 0:
            buttons[num].config(state="disabled")
            buttons[num]['text'] = ":)"
@@ -110,7 +112,7 @@ def open_play_game():
             
 
     # Клавиатура 
-    def dictionary():
+    def add_keyboard():
 
         keyboard = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"]
         num_element = 0
@@ -139,11 +141,11 @@ def open_play_game():
     window_play_game["bg"] = MAIN_COLOR
     window_play_game.overrideredirect(1)
 
-    dictionary()
+    add_keyboard()
     start_word()
-    # стресс 
-    label_stress = PhotoImage(file="png/smile.png")
-    label_stress = Label(window_play_game, image=label_stress)
+
+    # Стресс
+    label_stress = tkinter.Label(window_play_game, image=image_stress)
     label_stress.place(x=10, y=10)
 
     # Метка - название категории
@@ -244,5 +246,8 @@ if level == 0:
     button_continue["state"] = tkinter.DISABLED
 
 game_data = JSONParser().get_list("data/database.dat", False)
+
+image_stress = tkinter.PhotoImage(file='png/stress.png')
+image_smile = tkinter.PhotoImage(file='png/smile.png')
 
 window.mainloop()

@@ -1,3 +1,4 @@
+import tkinter
 def load():
     ret = dict()
     try:
@@ -44,9 +45,6 @@ TEXT_COLOR = "#FAFAFA"
 # BACKGROUND_LABEL_COLOR = "#3f92e4"
 BACKGROUND_LABEL_COLOR = "#aed257"
 LABEL_TEXT_COLOR = "#1A1A1A"
-
-
-
 
 application_name = "KLEI"
 hard_text = "Создано для вас и вашего компьютера!*"
