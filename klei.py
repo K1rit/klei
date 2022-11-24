@@ -145,8 +145,12 @@ def open_play_game():
     start_word()
 
     # Стресс
-    label_stress = tkinter.Label(window_play_game, image=image_stress)
-    label_stress.place(x=10, y=10)
+
+    label_stress = tkinter.Label(window_play_game, text="Стресс:", font=font_caption_text, background=MAIN_COLOR, foreground=TEXT_COLOR)
+    label_stress.place(x=(WIDTH - 261), y=10)
+
+    label_stress = tkinter.Label(window_play_game, image=image_stress, background=MAIN_COLOR)
+    label_stress.place(x=45, y=10)
 
     # Метка - название категории
     label_category = Label(window_play_game, text=game_data[level].category, font=font_caption_text, background=MAIN_COLOR, foreground=TEXT_COLOR)
