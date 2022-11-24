@@ -6,7 +6,8 @@ from services.sound import Sound
 from data.json_parser import JSONParser
 import time, random
 
-# Сброс всех настроек игры
+
+# Сброс всех настроек игры из ГЛАВНОГО ОКНА
 def reset_game():
     level = 0
     open_play_game()
@@ -19,8 +20,20 @@ def win_round():
 
 # Окно игры
 def open_play_game():
-
     Sound().play(Sound.OK_LETS_GO)
+
+    def update_stress():
+
+        label_stress_image = []
+        for i in range(stress):
+            label_stress_image.append(tkinter.Label(window_play_game, image=image_stress, background=MAIN_COLOR))
+            label_stress_image[-1].place(x=WIDTH - 276 + i * 26, y=15)
+
+        for i in range(10 - stress):
+            label_stress_image.append(tkinter.Label(window_play_game, image=image_smile, background=MAIN_COLOR))
+            label_stress_image[-1].place(x=WIDTH - 276 + stress * 26 + i * 26, y=15)
+
+
 
     # Метод, получающий нажатую кнопку
     def pressed_char(ch: str, num: int):
@@ -142,15 +155,13 @@ def open_play_game():
     window_play_game.overrideredirect(1)
 
     add_keyboard()
+    update_stress()
     start_word()
 
     # Стресс
-
-    label_stress = tkinter.Label(window_play_game, text="Стресс:", font=font_caption_text, background=MAIN_COLOR, foreground=TEXT_COLOR)
-    label_stress.place(x=(WIDTH - 261), y=10)
-
-    label_stress = tkinter.Label(window_play_game, image=image_stress, background=MAIN_COLOR)
-    label_stress.place(x=45, y=10)
+    label_stress = tkinter.Label(window_play_game, text="Стресс:", font=font_caption_text,
+                                 background=MAIN_COLOR, foreground=TEXT_COLOR)
+    label_stress.place(x=(WIDTH - 350), y=17)
 
     # Метка - название категории
     label_category = Label(window_play_game, text=game_data[level].category, font=font_caption_text, background=MAIN_COLOR, foreground=TEXT_COLOR)

@@ -65,6 +65,12 @@ state = ["5", "4", "3", "неуд.", "кол", "вас выгнали из шк�
 state_lives = 0
 letter_box = 26
 letter_box_height = 30
+
+stress = 0
+
+
+
+
 # print(state[level_state])
 # score = кол-во букв * 2
 # sub_score = 8
