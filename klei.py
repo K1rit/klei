@@ -12,11 +12,13 @@ def reset_game():
     level = 0
     open_play_game()
 
+
 # Функция когда чел соберёт всё
 def win_round():
     Sound().play(Sound.WIN_ROUND)
     for i in range(len(buttons)):
         buttons[i].destroy()
+
 
 # Окно игры
 def open_play_game():
@@ -24,27 +26,30 @@ def open_play_game():
 
     def update_stress():
         global label_stress_image
-        
+
         if label_stress_image == None:
+
             label_stress_image = []
+
             for i in range(stress):
                 label_stress_image.append(tkinter.Label(window_play_game, image=image_stress, background=MAIN_COLOR))
                 label_stress_image[-1].place(x=WIDTH - 276 + i * 26, y=15)
-    
+
             for i in range(10 - stress):
                 label_stress_image.append(tkinter.Label(window_play_game, image=image_smile, background=MAIN_COLOR))
                 label_stress_image[-1].place(x=WIDTH - 276 + stress * 26 + i * 26, y=15)
+
         else:
             for i in range(stress):
                 label_stress_image[i]["image"] = image_stress
-    
+
             for i in range(10 - stress):
                 label_stress_image[stress + i]["image"] = image_smile
 
-
-
     # Метод, получающий нажатую кнопку
     def pressed_char(ch: str, num: int):
+        global stress
+
         print(f"Нажата кнопка: {ch} {num}")
 
         # Получит, сколько символов УГАДАНО
@@ -52,12 +57,17 @@ def open_play_game():
 
         print(game_data[level].get_translate_ru())
         buttons[num].config(state="disabled")
-        if count_good_chars > 0:   
-           buttons[num]['text'] = ":)"
+
+        if count_good_chars > 0:
+            buttons[num]['text'] = ":)"
         else:
-           buttons[num]['text'] = ":|"
-           stress += 1
-           update_stress()
+            buttons[num]['text'] = ":|"
+
+            stress += 1
+            if stress > 10:
+                stress = 10
+
+            update_stress()
 
         if game_data[level].is_complete():
             win_round()
@@ -77,8 +87,6 @@ def open_play_game():
 
         print(count_good_chars, game_data[level].get_proposal(), game_data[level].is_complete())
 
-
-
     def window_play_game_destroy():
         Sound().play(Sound.BUTTON_PRESS)
         window_play_game.destroy()
@@ -89,7 +97,7 @@ def open_play_game():
         # print(game_data[level].words_ru)
         # print(game_data[level].category)
         # print(game_data[level].get_proposal())
-        
+
         # ширина строки в пикселях
         words_lines = game_data[level].get_proposal()
 
@@ -115,8 +123,10 @@ def open_play_game():
                 ch = words_lines[i][j]
                 # if (ord(ch.upper()) >= code_a or ch == "_") and (ord(ch.upper()) <= code_z or ch == "_"):
                 if ch == "_":
-                    word_labels.append(Label(window_play_game, text=ch, font=("Arial", 18), foreground=LABEL_TEXT_COLOR, background=BACKGROUND_LABEL_COLOR))
-                    word_labels[-1].place(x=start_x + j * letter_box, y=start_y + i * (letter_box_height + 4), width=25, height=30)
+                    word_labels.append(Label(window_play_game, text=ch, font=("Arial", 18), foreground=LABEL_TEXT_COLOR,
+                                             background=BACKGROUND_LABEL_COLOR))
+                    word_labels[-1].place(x=start_x + j * letter_box, y=start_y + i * (letter_box_height + 4), width=25,
+                                          height=30)
                 elif ord(ch.upper()) >= code_a and ord(ch.upper()) <= code_z:
                     word_labels.append(
                         Label(window_play_game, text=ch, font=("Arial", 18), foreground=WHITE_COLOR,
@@ -125,14 +135,15 @@ def open_play_game():
                                           width=25, height=30)
                 elif ch == " ":
                     word_labels.append(Label(window_play_game, text=ch, font=("Arial", 18), background=MAIN_COLOR))
-                    word_labels[-1].place(x=start_x + j * letter_box, y=start_y + i * (letter_box_height + 4), width=25, height=30)
+                    word_labels[-1].place(x=start_x + j * letter_box, y=start_y + i * (letter_box_height + 4), width=25,
+                                          height=30)
                 else:
-                    word_labels.append(Label(window_play_game, text=ch, font=("Arial", 18), foreground=WHITE_COLOR, background=MAIN_COLOR))
-                    word_labels[-1].place(x=start_x + j * letter_box, y=start_y + i * (letter_box_height + 4), width=25, height=30)
+                    word_labels.append(Label(window_play_game, text=ch, font=("Arial", 18), foreground=WHITE_COLOR,
+                                             background=MAIN_COLOR))
+                    word_labels[-1].place(x=start_x + j * letter_box, y=start_y + i * (letter_box_height + 4), width=25,
+                                          height=30)
 
-            
-
-    # Клавиатура 
+    # Клавиатура
     def add_keyboard():
 
         keyboard = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"]
@@ -146,9 +157,10 @@ def open_play_game():
             start_x = (WIDTH - all_key_width) // 2
 
             for j in range(len(keyboard[i])):
-                buttons.append(Button(window_play_game, command=lambda ch=keyboard[i][j], num=num_element: pressed_char(ch, num),
-                                      text=keyboard[i][j], font=font_button_game,
-                                      width=width_key, height=height_key))
+                buttons.append(
+                    Button(window_play_game, command=lambda ch=keyboard[i][j], num=num_element: pressed_char(ch, num),
+                           text=keyboard[i][j], font=font_button_game,
+                           width=width_key, height=height_key))
                 buttons[-1].place(x=start_x + j * (width_key * 20), y=HEIGHT // 1.6 + i * 50)
                 num_element += 1
 
@@ -169,26 +181,28 @@ def open_play_game():
     # Стресс
     label_stress = tkinter.Label(window_play_game, text="Стресс:", font=font_caption_text,
                                  background=MAIN_COLOR, foreground=TEXT_COLOR)
-    label_stress.place(x=(WIDTH - 350), y=17)
+    label_stress.place(x=WIDTH - 350, y=17)
 
     # Метка - название категории
-    label_category = Label(window_play_game, text=game_data[level].category, font=font_caption_text, background=MAIN_COLOR, foreground=TEXT_COLOR)
+    label_category = Label(window_play_game, text=game_data[level].category, font=font_caption_text,
+                           background=MAIN_COLOR, foreground=TEXT_COLOR)
     label_width = label_category.winfo_reqwidth()
     label_category_x = (WIDTH - label_width) // 2
     label_category.place(x=label_category_x, rely=0.91)
 
-#    button_exit = Button(window_play_game, text="Сбежать", font=font_button, command=window_play_game_destroy, width=10, pady=3)
-#    button_exit.place(relx=0.85, rely=0.9)
+    #    button_exit = Button(window_play_game, text="Сбежать", font=font_button, command=window_play_game_destroy, width=10, pady=3)
+    #    button_exit.place(relx=0.85, rely=0.9)
 
-    Button(window_play_game, text="Сбежать", font=font_button, command=window_play_game_destroy, width=10, pady=3).place(relx=0.85, rely=0.9)
+    Button(window_play_game, text="Сбежать", font=font_button, command=window_play_game_destroy, width=10,
+           pady=3).place(relx=0.85, rely=0.9)
     Button(window_play_game, text="?", font=font_button, command=None, width=7, pady=3).place(relx=0.03, rely=0.9)
+
 
 #    button_question = Button(window_play_game, text="?", font=font_button, command = None, width=7, pady=3)
 #    button_question.place(relx=0.03, rely=0.9)
 
 # Окно авторов
 def open_authors():
-
     def window_authors_destroy():
         Sound().play(Sound.BUTTON_PRESS)
         window_authors.destroy()
@@ -208,26 +222,28 @@ def open_authors():
 
     # KLEI
     label_app_name = ttk.Label(window_authors, text=application_name, font=font_authors_caption, background=MAIN_COLOR,
-                              foreground=TEXT_COLOR)
+                               foreground=TEXT_COLOR)
     label_app_name.place(relx=0.03, rely=0.04)
 
     # Слоган, типа что-то того
     label_hard_text = ttk.Label(window_authors, text=hard_text, font=("Arial", 13, "bold"), background=MAIN_COLOR,
-                              foreground=TEXT_COLOR)
+                                foreground=TEXT_COLOR)
     label_hard_text.place(relx=0.03, rely=0.15)
 
     # Текст об авторах
     label_text_authors = ttk.Label(window_authors, text=author_text, font=font_authors_text, background=MAIN_COLOR,
-                              foreground=TEXT_COLOR)
+                                   foreground=TEXT_COLOR)
     label_text_authors.place(relx=0.03, rely=0.27)
 
     # Сноска
     label_hard_text = ttk.Label(window_authors, text=note_text, font=("Arial", 9, "bold"), background=MAIN_COLOR,
-                              foreground=TEXT_COLOR)
+                                foreground=TEXT_COLOR)
     label_hard_text.place(relx=0.03, rely=0.71)
+
 
 def quit_game():
     window.quit()
+
 
 # =====================================================================================================================
 # ОТСЮДА НАЧИНАЕТСЯ ГЛАВНЫЙ КОД, ЫЫЫЫЫ
@@ -253,16 +269,16 @@ window["bg"] = MAIN_COLOR
 label_version = ttk.Label(text=f"Версия {VERSION}", anchor="sw", background=MAIN_COLOR, foreground=TEXT_COLOR)
 label_version.place(relx=0.03, rely=0.87)
 
-button_continue = Button(window, text="Продолжить", font=font_button, command = open_play_game, width=30, pady=3)
+button_continue = Button(window, text="Продолжить", font=font_button, command=open_play_game, width=30, pady=3)
 button_continue.place(relx=0.5, rely=0.20, anchor=CENTER)
 
-button_game = Button(window, text="Начать заново", font=font_button, command = reset_game, width=30, pady=3)
+button_game = Button(window, text="Начать заново", font=font_button, command=reset_game, width=30, pady=3)
 button_game.place(relx=0.5, rely=0.38, anchor=CENTER)
 
-button_exit = Button(window, text="Выход", font=font_button, command = quit_game, width=30, pady=3)
+button_exit = Button(window, text="Выход", font=font_button, command=quit_game, width=30, pady=3)
 button_exit.place(relx=0.5, rely=0.56, anchor=CENTER)
 
-button_authors = Button(window, text="Авторы", font=font_button, command = open_authors, width=30, pady=3)
+button_authors = Button(window, text="Авторы", font=font_button, command=open_authors, width=30, pady=3)
 button_authors.place(relx=0.5, rely=0.74, anchor=CENTER)
 
 if level == 0:
@@ -272,5 +288,7 @@ game_data = JSONParser().get_list("data/database.dat", False)
 
 image_stress = tkinter.PhotoImage(file='png/stress.png')
 image_smile = tkinter.PhotoImage(file='png/smile.png')
+
+label_stress_image = None
 
 window.mainloop()
