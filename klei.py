@@ -61,7 +61,7 @@ def open_play_game():
         if count_good_chars > 0:
             buttons[num]['text'] = ":)"
         else:
-            buttons[num]['text'] = ":|"
+            buttons[num]['text'] = ":b"
 
             stress += 1
             if stress > 10:
@@ -195,7 +195,7 @@ def open_play_game():
 
     Button(window_play_game, text="Сбежать", font=font_button, command=window_play_game_destroy, width=10,
            pady=3).place(relx=0.85, rely=0.9)
-    Button(window_play_game, text="?", font=font_button, command=None, width=7, pady=3).place(relx=0.03, rely=0.9)
+    Button(window_play_game, text="? x 3", font=font_button, command=None, width=7, pady=3).place(relx=0.03, rely=0.9)
 
 
 #    button_question = Button(window_play_game, text="?", font=font_button, command = None, width=7, pady=3)
