@@ -23,15 +23,23 @@ def open_play_game():
     Sound().play(Sound.OK_LETS_GO)
 
     def update_stress():
-
-        label_stress_image = []
-        for i in range(stress):
-            label_stress_image.append(tkinter.Label(window_play_game, image=image_stress, background=MAIN_COLOR))
-            label_stress_image[-1].place(x=WIDTH - 276 + i * 26, y=15)
-
-        for i in range(10 - stress):
-            label_stress_image.append(tkinter.Label(window_play_game, image=image_smile, background=MAIN_COLOR))
-            label_stress_image[-1].place(x=WIDTH - 276 + stress * 26 + i * 26, y=15)
+        global label_stress_image
+        
+        if label_stress_image == None:
+            label_stress_image = []
+            for i in range(stress):
+                label_stress_image.append(tkinter.Label(window_play_game, image=image_stress, background=MAIN_COLOR))
+                label_stress_image[-1].place(x=WIDTH - 276 + i * 26, y=15)
+    
+            for i in range(10 - stress):
+                label_stress_image.append(tkinter.Label(window_play_game, image=image_smile, background=MAIN_COLOR))
+                label_stress_image[-1].place(x=WIDTH - 276 + stress * 26 + i * 26, y=15)
+        else:
+            for i in range(stress):
+                label_stress_image[i]["image"] = image_stress
+    
+            for i in range(10 - stress):
+                label_stress_image[stress + i]["image"] = image_smile
 
 
 
@@ -43,13 +51,13 @@ def open_play_game():
         count_good_chars = game_data[level].put_char(ch)
 
         print(game_data[level].get_translate_ru())
-
-        if count_good_chars > 0:
-           buttons[num].config(state="disabled")
+        buttons[num].config(state="disabled")
+        if count_good_chars > 0:   
            buttons[num]['text'] = ":)"
         else:
-           buttons[num].config(state="disabled")
            buttons[num]['text'] = ":|"
+           stress += 1
+           update_stress()
 
         if game_data[level].is_complete():
             win_round()
