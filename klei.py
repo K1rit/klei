@@ -141,6 +141,10 @@ def open_play_game():
 
     dictionary()
     start_word()
+    # стресс 
+    label_stress = PhotoImage(file="png/smile.png")
+    label_stress = Label(window_play_game, image=label_stress)
+    label_stress.place(x=10, y=10)
 
     # Метка - название категории
     label_category = Label(window_play_game, text=game_data[level].category, font=font_caption_text, background=MAIN_COLOR, foreground=TEXT_COLOR)
