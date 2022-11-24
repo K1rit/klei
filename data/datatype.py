@@ -63,7 +63,7 @@ class Datatype:
                 new_lines.append("")
                 cl += 1
 
-        print(f"new lines: {new_lines[cl]}")
+        # print(f"new lines: {new_lines[cl]}")
         if len(new_lines[cl]) == 0:
             del new_lines[cl]
 
@@ -106,6 +106,8 @@ class Datatype:
 
         return self.multilines
 
+    def get_translate_ru(self):
+        return self.create_multilines(self.words_ru)
 
     def __str__(self):
         return f"{self.category}. {self.words_en} / {self.words_ru}"
