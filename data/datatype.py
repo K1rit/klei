@@ -1,9 +1,34 @@
+import random
 """
     Класс для хранения пары англ+рус фразы.
 """
 
 
 class Datatype:
+
+    to_prise = ["Здорово! Перевод:",
+                "Вы справились, значение фразы:",
+                "Супер! Перевод:",
+                "Ты лучший! Значение фразы:",
+                "Прекрасно! Перевод:",
+                "Замечательная работа! Перевод фразы:",
+                "Жжёшь! Фраза:",
+                "Браво! Перевод:",
+                "Успех, ты можешь гордиться! Перевод:",
+                "Гениально! Фраза:",
+                "Круто, бесподобно! Фраза:",
+                "Мы гордимся тобой!!! Уии! Перевод:",
+                "Отлично, дай пять! Фраза:",
+                "Великолепно! Перевод:",
+                "Талант! Молодец! Фраза означает:",
+                "Ээээ.... мммм... Правильно! Перевод:",
+                "Голосовое сообщение: супер! Ура! Переведём:",
+                "Офигенная работа! Перевод:",
+                "Это пять! Фраза:",
+                "Отлично, хорошо, молодец! Перевод:",
+                "Ты нас порадовал! Правильно! Фраза:",
+                "Это твоя победа! Фраза:"
+                ]
 
     def __init__(self, cat: str, en: str, ru: str):
         self._category = cat
@@ -45,7 +70,7 @@ class Datatype:
                 ret += 1
         return ret
 
-    def create_multilines(self, line):
+    def create_multilines(self, line, size_line):
         line = line.split(" ")
         new_lines = []
         i = 0
@@ -53,8 +78,8 @@ class Datatype:
         new_lines.append("")
 
         while i < len(line):
-            while i < len(line) and len(new_lines[cl] + line[i] + " ") <= 30:
-                if len(new_lines[cl] + line[i] + " ") <= 30:
+            while i < len(line) and len(new_lines[cl] + line[i] + " ") <= size_line:
+                if len(new_lines[cl] + line[i] + " ") <= size_line:
                     new_lines[cl] += line[i] + " "
                 else:
                     new_lines[cl] += line[i]
@@ -81,7 +106,7 @@ class Datatype:
 
         # Получить разбитые строки длиной макс=30 символов
         if self.multilines is None:
-            self.multilines = self.create_multilines(self.words_en)
+            self.multilines = self.create_multilines(self.words_en, 30)
 
         print(f"У нас {self.multilines}")
 
@@ -107,7 +132,7 @@ class Datatype:
         return self.multilines
 
     def get_translate_ru(self):
-        return self.create_multilines(self.words_ru)
+        return self.create_multilines(f'{random.choice(Datatype.to_prise)} "{self.words_ru}"', 50)
 
     def __str__(self):
         return f"{self.category}. {self.words_en} / {self.words_ru}"

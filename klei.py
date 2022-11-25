@@ -13,21 +13,41 @@ def reset_game():
     open_play_game()
 
 
-# Функция когда чел соберёт всё
-def win_round():
-    Sound().play(Sound.WIN_ROUND)
-    for i in range(len(buttons)):
-        buttons[i].destroy()
-        
-
 # Game over
 def stop_game():
     if stress > 10:
         pass
 
+
 # Окно игры
 def open_play_game():
     Sound().play(Sound.OK_LETS_GO)
+
+    # Функция когда чел соберёт всё
+    def win_round():
+        Sound().play(Sound.WIN_ROUND)
+        for i in range(len(buttons)):
+            buttons[i].destroy()
+
+        word = game_data[level].get_translate_ru()
+
+        height_string_rus = len(word) * letter_box_height
+        start_y = (HEIGHT - height_string) // 2 + height_string
+
+        code_a = ord("А")
+        code_z = ord("Я")
+
+        for i in range(len(word)):
+            width_string = len(word[i]) * letter_box_rus
+            start_x = (WIDTH - width_string) // 2
+
+            print(word[i])
+
+            word_russian.append(Label(window_play_game, text=word[i], font=("Arial", 16), foreground=YELLOW_COLOR,
+                      background=MAIN_COLOR))
+
+            word_russian[-1].place(x=start_x, y=start_y + i * (letter_box_height - 2),
+                                   width=width_string, height=30)
 
     def update_stress():
         global label_stress_image
@@ -59,7 +79,17 @@ def open_play_game():
         # Получит, сколько символов УГАДАНО
         count_good_chars = game_data[level].put_char(ch)
 
-        print(game_data[level].get_translate_ru())
+        """
+        # ==================================================================================================================
+        # Список с переводом
+        """
+
+        print(f"Список для вывода перевода: {game_data[level].get_translate_ru()}")
+
+        """
+        # ===============================================================================================
+        """
+
         buttons[num].config(state="disabled")
 
         if count_good_chars > 0:
@@ -67,12 +97,13 @@ def open_play_game():
         else:
             buttons[num]['text'] = ":|"
             stress += 1
-            
+
             if stress > 10:
                 stress = 10
 
             update_stress()
 
+        # Если собрана вся фраза, то...
         if game_data[level].is_complete():
             win_round()
 
@@ -86,7 +117,6 @@ def open_play_game():
             for i in range(len(word_labels)):
                 word_labels[i].destroy()
             word_labels.clear()
-            print("qwe")
             start_word()
 
         print(count_good_chars, game_data[level].get_proposal(), game_data[level].is_complete())
@@ -97,6 +127,7 @@ def open_play_game():
 
     # Для вывода
     def start_word():
+        global height_string
         # print(game_data[level].words_en)
         # print(game_data[level].words_ru)
         # print(game_data[level].category)
@@ -254,6 +285,8 @@ def quit_game():
 # =====================================================================================================================
 
 word_labels = []
+word_russian = []
+height_string = 0
 buttons = []
 
 window = Tk()
