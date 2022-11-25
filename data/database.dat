@@ -1,7 +1,84 @@
 {
     "THEMES": [
         {
-        "CATEGORY": "Категория 1. Приветствие",
+        "CATEGORY": "Категория 1. Продукты питания",
+        "WORDS": [
+            {
+                "words_en": "Milk",
+                "words_ru": "Молоко"
+            },
+            {
+                "words_en": "Butter",
+                "words_ru": "Сливочное масло"
+            },
+            {
+                "words_en": "Bread",
+                "words_ru": "Хлеб"
+            }
+			{
+                "words_en": "",
+                "words_ru": ""
+            }
+			{
+                "words_en": "",
+                "words_ru": ""
+            }
+			
+            ]
+        },
+        {
+        "CATEGORY": "Категория 2. Стандартные фразы",
+        "WORDS": [
+            {
+                "words_en": "",
+                "words_ru": ""
+            },
+            {
+                "words_en": "",
+                "words_ru": ""
+            },
+            {
+                "words_en": "",
+                "words_ru": ""
+            }
+            ]
+        },
+        {
+        "CATEGORY": "Категория 3. Стандартные фразы",
+        "WORDS": [
+            {
+                "words_en": "",
+                "words_ru": "На завтрак она съела хлеб с маслом"
+            },
+            {
+                "words_en": "",
+                "words_ru": ""
+            },
+            {
+                "words_en": "",
+                "words_ru": ""
+            }
+            ]
+        },
+		{
+        "CATEGORY": "Категория 4. Вокзал",
+        "WORDS": [
+            {
+                "words_en": "",
+                "words_ru": ""
+            },
+            {
+                "words_en": "",
+                "words_ru": ""
+            },
+            {
+                "words_en": "",
+                "words_ru": ""
+            }
+            ]
+        },
+		{
+        "CATEGORY": "Категория 5. Вокзал",
         "WORDS": [
             {
                 "words_en": "Good morning!",
@@ -85,25 +162,8 @@
             }
             ]
         },
-        {
-        "CATEGORY": "Категория 2. Стандартные фразы",
-        "WORDS": [
-            {
-                "words_en": "",
-                "words_ru": ""
-            },
-            {
-                "words_en": "",
-                "words_ru": ""
-            },
-            {
-                "words_en": "",
-                "words_ru": ""
-            }
-            ]
-        },
-        {
-        "CATEGORY": "Категория 3. Вокзал",
+		{
+        "CATEGORY": "Категория 6. Вокзал",
         "WORDS": [
             {
                 "words_en": "",
@@ -119,5 +179,82 @@
             }
             ]
         }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	]
 }

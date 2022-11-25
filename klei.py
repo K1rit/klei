@@ -18,6 +18,7 @@ def win_round():
     Sound().play(Sound.WIN_ROUND)
     for i in range(len(buttons)):
         buttons[i].destroy()
+        
 
 # Game over
 def stop_game():
