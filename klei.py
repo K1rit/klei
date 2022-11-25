@@ -19,6 +19,10 @@ def win_round():
     for i in range(len(buttons)):
         buttons[i].destroy()
 
+# Game over
+def stop_game():
+    if stress > 10:
+        pass
 
 # Окно игры
 def open_play_game():
@@ -61,9 +65,9 @@ def open_play_game():
         if count_good_chars > 0:
             buttons[num]['text'] = ":)"
         else:
-            buttons[num]['text'] = ":b"
-
+            buttons[num]['text'] = ":|"
             stress += 1
+            
             if stress > 10:
                 stress = 10
 
