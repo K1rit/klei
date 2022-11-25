@@ -33,7 +33,6 @@ def open_play_game():
         global label_stress_image
 
         if label_stress_image == None:
-
             label_stress_image = []
 
             for i in range(stress):
