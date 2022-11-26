@@ -62,16 +62,14 @@ note_text = """* Только для наружного применения. П
 разрешено ли вам смеяться."""
 
 level = 0
-state = ["5", "4", "3", "неуд.", "кол", "вас выгнали из школы"]
-state_lives = 0
 letter_box = 26
 letter_box_rus = 15
 
 letter_box_height = 30
 
 stress = 0
-
-
+helper_text = ["0", "?x1", "?x2", "?x3"]
+helper = 3
 
 
 # print(state[level_state])

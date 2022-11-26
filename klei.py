@@ -12,16 +12,39 @@ def reset_game():
     level = 0
     open_play_game()
 
+# вкл кнопки
+def turn_on():
+    pass
+
+
+# выкл кнопки
+def deactivate_button():
+    button_escape.destroy()
+    button_help.destroy()
 
 # Game over
 def stop_game():
-    if stress > 10:
-        pass
+    for i in range(len(buttons)):
+        buttons[i].destroy()
 
+    for i in range(len(word_labels)):
+        word_labels[i].destroy()
+    deactivate_button()
+      
 
 # Окно игры
 def open_play_game():
     Sound().play(Sound.OK_LETS_GO)
+
+    # Подсказка
+    def help_me(btn):
+        global helper
+        helper -= 1
+        if helper < 0:
+            helper = 0
+        btn["text"] = helper_text[helper]
+        
+
 
     # Функция когда чел соберёт всё
     def win_round():
@@ -48,6 +71,11 @@ def open_play_game():
 
             word_russian[-1].place(x=start_x, y=start_y + i * (letter_box_height - 2),
                                    width=width_string, height=30)
+
+        button_next = Button(window_play_game, text="Продолжить", font=font_button)
+        button_next.place(width=200, x=(WIDTH - 200) // 2 , y=(HEIGHT - 6) // 2 + 150)
+        deactivate_button()
+
 
     def update_stress():
         global label_stress_image
@@ -100,7 +128,9 @@ def open_play_game():
 
             if stress > 10:
                 stress = 10
+                stop_game()
 
+            
             update_stress()
 
         # Если собрана вся фраза, то...
@@ -201,6 +231,8 @@ def open_play_game():
 
     window_play_game = Toplevel()
     window_play_game.grab_set()
+    global button_help, button_escape
+    
 
     # Окно по центру, рассчитывается от размеров экрана
     window_play_game_x = window.winfo_screenwidth() // 2 - WIDTH // 2
@@ -228,9 +260,13 @@ def open_play_game():
     #    button_exit = Button(window_play_game, text="Сбежать", font=font_button, command=window_play_game_destroy, width=10, pady=3)
     #    button_exit.place(relx=0.85, rely=0.9)
 
-    Button(window_play_game, text="Сбежать", font=font_button, command=window_play_game_destroy, width=10,
-           pady=3).place(relx=0.85, rely=0.9)
-    Button(window_play_game, text="? x 3", font=font_button, command=None, width=7, pady=3).place(relx=0.03, rely=0.9)
+    button_escape = Button(window_play_game, text="Сбежать", font=font_button, command=window_play_game_destroy, width=10, pady=3)
+    button_escape.place(relx=0.85, rely=0.9)
+    button_help = Button(window_play_game, text=helper_text[helper], font=font_button, width=7, pady=3)
+    button_help["command"] = lambda btn=button_help: help_me(btn)
+    button_help.place(relx=0.03, rely=0.9)
+
+
 
 
 #    button_question = Button(window_play_game, text="?", font=font_button, command = None, width=7, pady=3)
@@ -327,5 +363,6 @@ image_stress = tkinter.PhotoImage(file='png/stress.png')
 image_smile = tkinter.PhotoImage(file='png/smile.png')
 
 label_stress_image = None
-
+button_help = None
+button_escape = None
 window.mainloop()
