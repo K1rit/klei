@@ -24,8 +24,7 @@ def deactivate_button():
     global button_escape, button_help
     button_escape.destroy()
     button_help.destroy()
-    button_escape = None
-    button_help = None
+
 
 
 # Game over
@@ -44,8 +43,12 @@ def stop_game():
 def open_play_game():
     Sound().play(Sound.OK_LETS_GO)
 
+    # Следующий уровень при нажатии на кнопку Хочу ещё!
     def next_level():
+        global button_next
         setup.level += 1
+        deactivate_button()
+        button_next.destroy()
         reset_level()
 
     def reset_level():
@@ -74,7 +77,7 @@ def open_play_game():
 
         # Метка - название категории
         if label_category is None:
-            label_category = Label(window_play_game, text=game_data[level].category, font=font_caption_text,
+            label_category = Label(window_play_game, text=game_data[setup.level].category, font=font_caption_text,
                                    background=MAIN_COLOR, foreground=TEXT_COLOR)
             label_width = label_category.winfo_reqwidth()
             label_category_x = (WIDTH - label_width) // 2
@@ -103,11 +106,15 @@ def open_play_game():
 
     # Функция когда чел соберёт всё
     def win_round():
+        global button_next
+
         Sound().play(Sound.WIN_ROUND)
         for i in range(len(buttons)):
             buttons[i].destroy()
 
-        word = game_data[level].get_translate_ru()
+        deactivate_button()
+
+        word = game_data[setup.level].get_translate_ru()
 
         height_string_rus = len(word) * letter_box_height
         start_y = (HEIGHT - height_string) // 2 + height_string
@@ -129,7 +136,7 @@ def open_play_game():
 
         button_next = Button(window_play_game, text="Хочу ещё!", command=next_level, font=font_button)
         button_next.place(width=200, x=(WIDTH - 200) // 2, y=(HEIGHT - 6) // 2 + 150)
-        deactivate_button()
+
 
     def update_stress():
         global label_stress_image, image_stress, image_smile
@@ -159,14 +166,14 @@ def open_play_game():
         print(f"Нажата кнопка: {ch} {num}")
 
         # Получит, сколько символов УГАДАНО
-        count_good_chars = game_data[level].put_char(ch)
+        count_good_chars = game_data[setup.level].put_char(ch)
 
         """
         # ==================================================================================================================
         # Список с переводом
         """
 
-        print(f"Список для вывода перевода: {game_data[level].get_translate_ru()}")
+        print(f"Список для вывода перевода: {game_data[setup.level].get_translate_ru()}")
 
         """
         # ===============================================================================================
@@ -187,7 +194,7 @@ def open_play_game():
             update_stress()
 
         # Если собрана вся фраза, то...
-        if game_data[level].is_complete():
+        if game_data[setup.level].is_complete():
             win_round()
 
         if count_good_chars > 0:
@@ -202,7 +209,7 @@ def open_play_game():
             word_labels.clear()
             start_word()
 
-        print(count_good_chars, game_data[level].get_proposal(), game_data[level].is_complete())
+        print(count_good_chars, game_data[setup.level].get_proposal(), game_data[setup.level].is_complete())
 
     def window_play_game_destroy():
         Sound().play(Sound.BUTTON_PRESS)
@@ -211,13 +218,13 @@ def open_play_game():
     # Для вывода
     def start_word():
         global height_string
-        # print(game_data[level].words_en)
-        # print(game_data[level].words_ru)
-        # print(game_data[level].category)
-        # print(game_data[level].get_proposal())
+        # print(game_data[setup.level].words_en)
+        # print(game_data[setup.level].words_ru)
+        # print(game_data[setup.level].category)
+        # print(game_data[setup.level].get_proposal())
 
         # ширина строки в пикселях
-        words_lines = game_data[level].get_proposal()
+        words_lines = game_data[setup.level].get_proposal()
 
         print(f"У нас {len(words_lines)} строк")
         print(f"У нас {words_lines}")
@@ -375,7 +382,7 @@ button_exit.place(relx=0.5, rely=0.56, anchor=CENTER)
 button_authors = Button(window, text="Авторы", font=font_button, command=open_authors, width=30, pady=3)
 button_authors.place(relx=0.5, rely=0.74, anchor=CENTER)
 
-if level == 0:
+if setup.level == 0:
     button_continue["state"] = tkinter.DISABLED
 
 game_data = JSONParser().get_list("data/database.dat", False)
@@ -391,5 +398,6 @@ label_stress = None
 label_category = None
 
 buttons = None
+button_next = None
 
 window.mainloop()
