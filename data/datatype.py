@@ -31,9 +31,12 @@ class Datatype:
                 ]
 
     def __init__(self, cat: str, en: str, ru: str):
+
         self._category = cat
         self._words_en = en
         self._words_ru = ru
+
+
         self.multilines = None
 
         self.enabled_chars = []
@@ -131,6 +134,21 @@ class Datatype:
 
         return self.multilines
 
+    def get_help_char(self):
+        num = 0
+        find = False
+        while num < len(self.enabled_chars) and not find:
+            if not self.enabled_chars[num]:
+                find = True
+            else:
+                num += 1
+
+        # print(self.enabled_chars)
+        # print(f"Первая найденная неугаданная буква: {num} = {self.words_en[num]}")
+
+        return self.words_en[num].upper()
+
+
     def get_translate_ru(self):
         return self.create_multilines(f'{random.choice(Datatype.to_prise)} "{self.words_ru}"', 50)
 
@@ -160,3 +178,4 @@ class Datatype:
     @words_ru.setter
     def words_ru(self, value):
         self._words_ru = value
+

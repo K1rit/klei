@@ -108,6 +108,21 @@ def open_play_game():
             helper = 0
         btn["text"] = helper_text[helper]
 
+        ch = game_data[setup.level].get_help_char()
+        print(f"Буква: {ch}")
+
+        # ABCDEFGH
+        #     E
+        # 01234567
+
+        num = -1
+        for i in range(len(buttons)):
+            if num == -1 and buttons[i]["text"] == ch:
+                num = i
+
+        pressed_char(ch, num)
+
+
     # Функция когда чел соберёт всё
     def win_round():
         global button_next
@@ -390,6 +405,7 @@ if setup.level == 0:
     button_continue["state"] = tkinter.DISABLED
 
 game_data = JSONParser().get_list("data/database.dat", False)
+# game_data = JSONParser().get_list("data/database.dat", True)
 
 image_stress = tkinter.PhotoImage(file='png/stress.png')
 image_smile = tkinter.PhotoImage(file='png/smile.png')
