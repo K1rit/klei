@@ -24,6 +24,8 @@ def deactivate_button():
 
 # Game over
 def stop_game():
+    global label_game_over
+
     for i in range(len(buttons)):
         buttons[i].destroy()
 
