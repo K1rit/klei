@@ -45,10 +45,15 @@ def open_play_game():
 
     # Следующий уровень при нажатии на кнопку Хочу ещё!
     def next_level():
-        global button_next
+        global button_next, word_russian, word_labels
         setup.level += 1
         deactivate_button()
         button_next.destroy()
+        for lbl in word_labels:
+            lbl.destroy()
+
+        for lbl in word_russian:
+            lbl.destroy()
         reset_level()
 
     def reset_level():
@@ -64,7 +69,6 @@ def open_play_game():
         label_stress = None
         label_category = None
 
-        setup.stress = 0
         add_keyboard()
         update_stress()
         start_word()

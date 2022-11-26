@@ -1,57 +1,52 @@
 {
     "THEMES": [
         {
-        "CATEGORY": "Категория 1. Еда",
+        "CATEGORY": "Категория 1. Приветствия",
         "WORDS": [
             {
-                "words_en": "Qqqq wwww eeee",
-                "words_ru": "Я хочу есть"
+                "words_en": "Hi! I'm human too, let's be friends?",
+                "words_ru": "Привет! Я тоже человек, будем друзьями?"
             },
             {
-                "words_en": "Where is the restaurant 'Delicious and point'?",
-                "words_ru": "Где находится ресторан 'Вкусно и точка'?"
+                "words_en": "Guess what my name is?",
+                "words_ru": "Угадайте, как меня зовут?"
             },
             {
-                "words_en": "Thanks, but I don't eat stones",
-                "words_ru": "Спасибо, но камни я не ем"
+                "words_en": "Open up, please, I urgently need to stay with you",
+                "words_ru": "Откройте пожалуйста, мне срочно надо у вас пожить"
             },
 			{
-                "words_en": "Can I eat this fallen bun?",
-                "words_ru": "Можно я съем эту упавшую булку?"
+                "words_en": "Goodbye, I always hated you!",
+                "words_ru": "Прощайте, я вас всегда ненавидел!"
             },
 			{
-                "words_en": "I'm thirsty, where is your gas station?",
-                "words_ru": "Я хочу пить, где у вас заправка?"
-            },
-			{
-                "words_en": "",
-                "words_ru": ""
+                "words_en": "Are you talking to me?",
+                "words_ru": "Ты со мной говоришь?"
             }
-            ]
         },
 
         {
-        "CATEGORY": "Категория 2. Одежда",
+        "CATEGORY": "Категория 2. Голод не тётка",
         "WORDS": [
             {
-                "words_en": "",
-                "words_ru": ""
+                "words_en": "I'm hungry again",
+                "words_ru": "Я опять хочу есть"
             },
             {
-                "words_en": "I need a latex suit for my dog",
-                "words_ru": "Мне нужен латексный костюм для моей собаки"
+                "words_en": "Where is your cheapest restaurant?",
+                "words_ru": "Где у вас самый дешёвый ресторан?"
             },
             {
-                "words_en": "",
-                "words_ru": ""
+                "words_en": "Do you have discounts on your products?",
+                "words_ru": "Ваша еда по скидке?"
             },
 			{
-                "words_en": "I need your clothes",
-                "words_ru": "Мне нужна твоя одежда"
+                "words_en": "Will you share the soup with me?",
+                "words_ru": "Вы не поделитесь со мной супом?"
             },
 			{
-                "words_en": "I changed my mind, I don't need your clothes.",
-                "words_ru": "Я передумал, Мне не нужна твоя одежда"
+                "words_en": "I'm thirsty, where's your gas station?",
+                "words_ru": "Я хочу пить, где у вас заправка?"
             }
             ]
         },
