@@ -91,11 +91,11 @@ def open_play_game():
         #    button_exit.place(relx=0.85, rely=0.9)
 
         button_escape = Button(window_play_game, text="Сбежать", font=font_button, command=window_play_game_destroy,
-                               width=10, pady=3)
-        button_escape.place(relx=0.85, rely=0.9)
-        button_help = Button(window_play_game, text=helper_text[helper], font=font_button, width=7, pady=3)
+                               width=12, pady=3)
+        button_escape.place(relx=0.835, rely=0.9)
+        button_help = Button(window_play_game, text=helper_text[helper], font=font_button, width=12, pady=3)
         button_help["command"] = lambda btn=button_help: help_me(btn)
-        button_help.place(relx=0.03, rely=0.9)
+        button_help.place(relx=0.02, rely=0.9)
 
     #    button_question = Button(window_play_game, text="?", font=font_button, command = None, width=7, pady=3)
     #    button_question.place(relx=0.03, rely=0.9)
@@ -109,8 +109,11 @@ def open_play_game():
         btn["text"] = helper_text[helper]
 
         ch = game_data[setup.level].get_help_char()
-        print(f"Буква: {ch}")
+        if helper == 0:
+            btn["state"] = DISABLED
 
+
+        # print(f"Буква: {ch}")
         # ABCDEFGH
         #     E
         # 01234567

@@ -68,7 +68,7 @@ letter_box_rus = 15
 letter_box_height = 30
 
 stress = 0
-helper_text = ["0", "?x1", "?x2", "?x3"]
+helper_text = ["Подсказок нет", "Подсказки: 1", "Подсказки: 2", "Подсказки: 3"]
 helper = 3
 
 
