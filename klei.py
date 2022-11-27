@@ -37,6 +37,7 @@ def stop_game():
     for i in range(len(word_labels)):
         word_labels[i].destroy()
     deactivate_button()
+    
 
 
 # Окно игры
@@ -59,7 +60,7 @@ def open_play_game():
     def reset_level():
         global buttons, word_labels, word_russian, height_string
         global button_escape, button_help, label_stress, label_category, label_stress_image
-        global label_category, stress
+        global label_category, stress, button_reset
 
         word_labels = []
         buttons = []
@@ -212,7 +213,14 @@ def open_play_game():
             if setup.stress > 10:
                 setup.stress = 10
                 stop_game()
+                button_reset = Button(window_play_game, text="Попробовать еще раз", font=font_button, width=20, pady=7)
+                button_reset["command"] = lambda btn=button_reset: reset_game(btn)
+                button_reset.place(width=200, x=(WIDTH - 200) // 2, y=(HEIGHT - 6) // 2 + 70)
 
+                label_reset = Label(window_play_game, text="dfjsgfsgf", background=MAIN_COLOR)
+                label_reset.place(width=200, x=(WIDTH - 200) // 2, y=(HEIGHT - 6) // 2 + 150)
+
+            
             update_stress()
 
         # Если собрана вся фраза, то...
@@ -416,6 +424,7 @@ image_smile = tkinter.PhotoImage(file='png/smile.png')
 label_stress_image = None
 button_help = None
 button_escape = None
+button_reset = None
 
 label_stress = None
 label_category = None
