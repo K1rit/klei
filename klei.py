@@ -199,7 +199,7 @@ def open_play_game():
         print(f"Список для вывода перевода: {game_data[setup.level].get_translate_ru()}")
 
         """
-        # ===============================================================================================
+        # ==================================================================================================================
         """
 
         buttons[num].config(state="disabled")
@@ -425,7 +425,6 @@ label_stress_image = None
 button_help = None
 button_escape = None
 button_reset = None
-
 label_stress = None
 label_category = None
 
