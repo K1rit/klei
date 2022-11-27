@@ -97,6 +97,8 @@ def open_play_game():
         button_help = Button(window_play_game, text=helper_text[helper], font=font_button, width=12, pady=3)
         button_help["command"] = lambda btn=button_help: help_me(btn)
         button_help.place(relx=0.02, rely=0.9)
+        if helper == 0:
+            button_help["state"] = DISABLED
 
     #    button_question = Button(window_play_game, text="?", font=font_button, command = None, width=7, pady=3)
     #    button_question.place(relx=0.03, rely=0.9)
@@ -214,7 +216,8 @@ def open_play_game():
                 setup.stress = 10
                 stop_game()
                 button_reset = Button(window_play_game, text="Попробовать еще раз", font=font_button, width=20, pady=7)
-                button_reset["command"] = lambda btn=button_reset: reset_game(btn)
+                #button_reset["command"] = lambda btn=button_reset: reset_game(btn)
+                button_reset["command"] = reset_game
                 button_reset.place(width=200, x=(WIDTH - 200) // 2, y=(HEIGHT - 6) // 2 + 70)
 
                 label_reset = Label(window_play_game, text="dfjsgfsgf", background=MAIN_COLOR)
@@ -256,8 +259,8 @@ def open_play_game():
         # ширина строки в пикселях
         words_lines = game_data[setup.level].get_proposal()
 
-        print(f"У нас {len(words_lines)} строк")
-        print(f"У нас {words_lines}")
+        # print(f"У нас {len(words_lines)} строк")
+        # print(f"У нас {words_lines}")
 
         height_string = len(words_lines) * letter_box_height
         start_y = (HEIGHT - height_string) // 2 - 50
@@ -276,7 +279,6 @@ def open_play_game():
 
             for j in range(len(words_lines[i])):
                 ch = words_lines[i][j]
-                # if (ord(ch.upper()) >= code_a or ch == "_") and (ord(ch.upper()) <= code_z or ch == "_"):
                 if ch == "_":
                     word_labels.append(Label(window_play_game, text=ch, font=("Arial", 18), foreground=LABEL_TEXT_COLOR,
                                              background=BACKGROUND_LABEL_COLOR))
