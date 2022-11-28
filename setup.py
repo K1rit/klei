@@ -1,4 +1,6 @@
 import tkinter
+
+
 def load():
     ret = dict()
     try:
@@ -7,28 +9,45 @@ def load():
         f.close()
         for s in data:
             s = s.split("=")
-            if s[0] == "level":
-                ret['level'] = s[1]
+            ret[s[0]] = s[1]
     except FileNotFoundError:
-        f = open("setup.dat", "w", encoding="UTF-8")
-        f.write("level=0")
-        f.close()
+        reset_file()
         ret = load()
 
     return ret
 
+
+def reset_file():
+    try:
+        f = open("setup.dat", "w", encoding="UTF-8")
+        f.write("level=0\n")
+        f.write("stress=0\n")
+        f.write("helper=3\n")
+        f.close()
+    except:
+        print("Ошибка записи файла.")
+
+
 def save():
     f = open("setup.dat", "w", encoding="UTF-8")
-    f.write(f"level={level}")
+    f.write(f"level={level}\n")
+    f.write(f"stress={stress}\n")
+    f.write(f"helper={helper}\n")
     f.close()
+
+
+def load_variables():
+    global level, stress, helper
+    load_result = load()
+    level = int(load_result['level'])
+    stress = int(load_result['stress'])
+    helper = int(load_result['helper'])
+
 
 WIDTH = 800
 HEIGHT = 600
 MARGIN = 50
-VERSION = 0.1
-
-level = load()['level']
-
+VERSION = 0.4
 
 font_button = ("Arial", 12)
 font_button_game = ("Arial", 14, "bold")
@@ -61,16 +80,17 @@ author_text = """Разработчик:
 note_text = """* Только для наружного применения. Проконсультируйтесь с врачом, 
 разрешено ли вам смеяться."""
 
-level = 0
 letter_box = 26
 letter_box_rus = 15
 
 letter_box_height = 30
 
-stress = 10
 helper_text = ["Подсказок нет", "Подсказки: 1", "Подсказки: 2", "Подсказки: 3"]
-helper = 3
+level = None
+stress = None
+helper = None
 
+load_variables()
 
 # print(state[level_state])
 # score = кол-во букв * 2

@@ -31,24 +31,25 @@ class Datatype:
                 ]
 
     def __init__(self, cat: str, en: str, ru: str):
-
         self._category = cat
         self._words_en = en
         self._words_ru = ru
-
-
         self.multilines = None
+        self.enabled_chars = None
+        self.reset_data()
 
+    # Надо "перегрузить" строку и убрать открытые буквы
+    def reset_data(self):
+        self.multilines = None
         self.enabled_chars = []
         tmp = self._words_en.upper()
         p1 = ord("A")
         p2 = ord("Z")
         for i in range(len(tmp)):
-            if ord(tmp[i]) >= p1 and ord(tmp[i]) <= p2:
+            if p1 <= ord(tmp[i]) <= p2:
                 self.enabled_chars.append(False)
             else:
                 self.enabled_chars.append(True)
-
 
     def is_complete(self):
         # Вернёт True, если пользователь угадал
@@ -111,7 +112,7 @@ class Datatype:
         if self.multilines is None:
             self.multilines = self.create_multilines(self.words_en, 30)
 
-        print(f"У нас {self.multilines}")
+        # print(f"У нас {self.multilines}")
 
         # Обработать вывод, заменив все не открытые буквы подчёркиванием
         # и наоборот, минуя знаки препинания
