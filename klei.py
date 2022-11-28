@@ -6,6 +6,7 @@ from services.sound import Sound
 from data.json_parser import JSONParser
 
 
+
 def update_key_on_main_window():
     global button_continue
     if setup.level == 0:
@@ -192,10 +193,13 @@ def open_play_game():
         Sound().play(Sound.WIN_ROUND)
         for i in range(len(buttons)):
             buttons[i].destroy()
-
         deactivate_button()
 
         word = game_data[setup.level].get_translate_ru()
+        
+        word_prize = game_data[setup.level].get_prize_str()
+        label_win = Label(window_play_game, text=word_prize, background=MAIN_COLOR, font=font_prize, fg=LIGHT_BLUE_COLOR)
+        label_win.place(width=450, x=(WIDTH - 450) // 2, y=(HEIGHT - 6) // 2 - 180)
 
         height_string_rus = len(word) * letter_box_height
         start_y = (HEIGHT - height_string) // 2 + height_string
