@@ -54,7 +54,7 @@ font_button_game = ("Arial", 14, "bold")
 font_authors_caption = ("Arial", 24, "bold")
 font_authors_text = ("Arial", 11)
 font_caption_text = ("Arial", 13, "bold")
-
+font_game_over = ("Arial", 40, "bold")
 # MAIN_COLOR = "#3c3f41"
 # MAIN_COLOR = "#1976D2"
 MAIN_COLOR = "#512DA8"

@@ -273,6 +273,8 @@ def open_play_game():
                 ВОЗМОЖНО, В STOP_GAME НЕ НУЖНО СТИРАТЬ УГАДАННЫЕ БУКВЫ, А ОТКРЫТЬ ИХ ВСЕ
                 
                 """
+                label_game_over = Label(window_play_game, text="GAGAGAGAGA", font=font_game_over, background=MAIN_COLOR, fg="#e51400")
+                label_game_over.place(width=300, x=(WIDTH - 200) // 2, y=(HEIGHT - 6) // 2 - 100)
 
                 # Кнопка ВЫХОД В ГЛАВНОЕ МЕНЮ
                 button_exit_to_main_menu = Button(window_play_game, text="Главное меню", font=font_button)
