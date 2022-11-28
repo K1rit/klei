@@ -30,7 +30,7 @@ def create_window(new_game=False):
     window_play_game_y = window.winfo_screenheight() // 2 - HEIGHT // 2
     window_play_game.geometry(f"{WIDTH}x{HEIGHT}+{window_play_game_x}+{window_play_game_y}")
     window_play_game["bg"] = MAIN_COLOR
-    window_play_game.overrideredirect(0)
+    window_play_game.overrideredirect(1)
 
     if new_game:
         reset_game()
@@ -420,7 +420,7 @@ def open_authors():
     window_authors_y = int((window.winfo_screenheight() - HEIGHT * 0.7) // 2)
     window_authors.geometry(f"{int(WIDTH * 0.6)}x{int(HEIGHT * 0.7)}+{window_authors_x}+{window_authors_y}")
     window_authors["bg"] = MAIN_COLOR
-    window_authors.overrideredirect(0)
+    window_authors.overrideredirect(1)
 
     button_exit = Button(window_authors, text="ОК", font=font_button, command=window_authors_destroy, width=10)
     button_exit.place(relx=0.5, rely=0.90, anchor=CENTER)
@@ -463,7 +463,7 @@ POS_Y = window.winfo_screenheight() // 2 - HEIGHT // 6
 window.geometry(f"{WIDTH // 2}x{int(HEIGHT // 2.5)}+{POS_X}+{POS_Y}")
 
 window.resizable(False, False)
-window.overrideredirect(0)
+window.overrideredirect(1)
 
 # Фоновый цвет в HEX
 window["bg"] = MAIN_COLOR
