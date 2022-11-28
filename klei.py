@@ -29,7 +29,7 @@ def create_window(new_game=False):
     window_play_game_y = window.winfo_screenheight() // 2 - HEIGHT // 2
     window_play_game.geometry(f"{WIDTH}x{HEIGHT}+{window_play_game_x}+{window_play_game_y}")
     window_play_game["bg"] = MAIN_COLOR
-    window_play_game.overrideredirect(1)
+    window_play_game.overrideredirect(0)
 
     if new_game:
         reset_game()
@@ -38,7 +38,7 @@ def create_window(new_game=False):
 
 
 # Сброс всех настроек игры из ГЛАВНОГО ОКНА
-def reset_game(btn_repeat=None, btn_main_menu=None):
+def reset_game(btn_repeat=None, btn_main_menu=None, lbl_game_over=None):
     setup.reset_file()
     setup.load_variables()
 
@@ -47,8 +47,12 @@ def reset_game(btn_repeat=None, btn_main_menu=None):
 
     if btn_repeat is not None:
         btn_repeat.destroy()
+
     if btn_main_menu is not None:
         btn_main_menu.destroy()
+
+    if lbl_game_over is not None:
+        lbl_game_over.destroy()
 
     open_play_game()
 
@@ -273,8 +277,8 @@ def open_play_game():
                 ВОЗМОЖНО, В STOP_GAME НЕ НУЖНО СТИРАТЬ УГАДАННЫЕ БУКВЫ, А ОТКРЫТЬ ИХ ВСЕ
                 
                 """
-                label_game_over = Label(window_play_game, text="GAGAGAGAGA", font=font_game_over, background=MAIN_COLOR, fg="#e51400")
-                label_game_over.place(width=300, x=(WIDTH - 200) // 2, y=(HEIGHT - 6) // 2 - 100)
+                label_game_over = Label(window_play_game, text="ГАМЕ ОВЕР", font=font_game_over, background=MAIN_COLOR, fg=LIGHT_BLUE_COLOR)
+                label_game_over.place(width=400, x=(WIDTH - 400) // 2, y=(HEIGHT - 20) // 2 - 100)
 
                 # Кнопка ВЫХОД В ГЛАВНОЕ МЕНЮ
                 button_exit_to_main_menu = Button(window_play_game, text="Главное меню", font=font_button)
@@ -284,7 +288,8 @@ def open_play_game():
                 # Кнопка ПОПРОБОВАТЬ ЕЩЁ РАЗ
                 button_repeat_game = Button(window_play_game, text="Попробовать еще раз", font=font_button)
                 button_repeat_game["command"] = lambda btn1=button_repeat_game, \
-                                                       btn2=button_exit_to_main_menu: reset_game(btn1, btn2)
+                                                       btn2=button_exit_to_main_menu, \
+                                                       lbl1=label_game_over: reset_game(btn1, btn2, lbl1)
                 # button_reset["command"] = reset_game
                 button_repeat_game.place(width=200, x=(WIDTH - 200) // 2, y=(HEIGHT - 6) // 2 + 70)
 
@@ -411,7 +416,7 @@ def open_authors():
     window_authors_y = int((window.winfo_screenheight() - HEIGHT * 0.7) // 2)
     window_authors.geometry(f"{int(WIDTH * 0.6)}x{int(HEIGHT * 0.7)}+{window_authors_x}+{window_authors_y}")
     window_authors["bg"] = MAIN_COLOR
-    window_authors.overrideredirect(1)
+    window_authors.overrideredirect(0)
 
     button_exit = Button(window_authors, text="ОК", font=font_button, command=window_authors_destroy, width=10)
     button_exit.place(relx=0.5, rely=0.90, anchor=CENTER)
@@ -454,7 +459,7 @@ POS_Y = window.winfo_screenheight() // 2 - HEIGHT // 6
 window.geometry(f"{WIDTH // 2}x{int(HEIGHT // 2.5)}+{POS_X}+{POS_Y}")
 
 window.resizable(False, False)
-window.overrideredirect(1)
+window.overrideredirect(0)
 
 # Фоновый цвет в HEX
 window["bg"] = MAIN_COLOR
@@ -497,4 +502,5 @@ buttons = None
 button_next = None
 
 update_key_on_main_window()
+
 window.mainloop()

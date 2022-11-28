@@ -66,6 +66,8 @@ TEXT_COLOR = "#FAFAFA"
 BACKGROUND_LABEL_COLOR = "#aed257"
 LABEL_TEXT_COLOR = "#1A1A1A"
 
+LIGHT_BLUE_COLOR = "#9acbc2"
+
 application_name = "KLEI"
 hard_text = "Самый бесполезный и весёлый русско-английский\nразговорник в игровой форме*"
 author_text = """Разработчик:
@@ -91,6 +93,7 @@ stress = None
 helper = None
 
 load_variables()
+
 
 # print(state[level_state])
 # score = кол-во букв * 2
