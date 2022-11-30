@@ -123,6 +123,8 @@ def open_play_game():
         if setup.level > 0:
             if game_data[setup.level].category != game_data[setup.level - 1].category:
                 setup.helper = 3
+                setup.stress //= 2
+
 
         reset_level()
 
