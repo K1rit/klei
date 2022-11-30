@@ -6,13 +6,13 @@ from services.sound import Sound
 from data.json_parser import JSONParser
 
 
-
 def update_key_on_main_window():
     global button_continue
     if setup.level == 0:
         button_continue["state"] = DISABLED
     else:
         button_continue["state"] = NORMAL
+
 
 # Создаёт игровое окно
 def create_window(new_game=False):
@@ -30,7 +30,7 @@ def create_window(new_game=False):
     window_play_game_y = window.winfo_screenheight() // 2 - HEIGHT // 2
     window_play_game.geometry(f"{WIDTH}x{HEIGHT}+{window_play_game_x}+{window_play_game_y}")
     window_play_game["bg"] = MAIN_COLOR
-    window_play_game.overrideredirect(1)
+    window_play_game.overrideredirect(0)
 
     if new_game:
         reset_game()
@@ -87,13 +87,21 @@ def stop_game():
 def open_play_game():
     global window_play_game
 
+    # ===========================================================
+    # Когда игра закончена и человек победил
+    # ===========================================================
+    def win_game():
+        print("WIN GAME!")
+        pass
+
+    # ===========================================================
+
     # Следующий уровень при нажатии на кнопку Хочу ещё!
-    def next_level():
+    def next_level(label_win_round=None):
         global button_next, word_russian, word_labels
 
         Sound().play(Sound.OK_LETS_GO)
 
-        setup.level += 1
         deactivate_button()
         button_next.destroy()
         for lbl in word_labels:
@@ -101,7 +109,20 @@ def open_play_game():
 
         for lbl in word_russian:
             lbl.destroy()
+
+        if label_win_round is not None:
+            label_win_round.destroy()
+
         setup.save()
+
+        setup.level += 1
+        if setup.level == len(game_data):
+            win_game()
+            return "Alexey"
+
+        if setup.level > 0:
+            if game_data[setup.level].category != game_data[setup.level - 1].category:
+                setup.helper = 3
 
         reset_level()
 
@@ -164,7 +185,10 @@ def open_play_game():
 
     # Подсказка
     def help_me(btn):
+
+        # УДАЛИТЬ
         setup.helper -= 1
+
         if setup.helper < 0:
             setup.helper = 0
 
@@ -196,9 +220,11 @@ def open_play_game():
         deactivate_button()
 
         word = game_data[setup.level].get_translate_ru()
-        
+
         word_prize = game_data[setup.level].get_prize_str()
-        label_win = Label(window_play_game, text=word_prize, background=MAIN_COLOR, font=font_prize, fg=LIGHT_BLUE_COLOR)
+
+        label_win = Label(window_play_game, text=word_prize, background=MAIN_COLOR, font=font_prize,
+                          fg=LIGHT_BLUE_COLOR)
         label_win.place(width=450, x=(WIDTH - 450) // 2, y=(HEIGHT - 6) // 2 - 180)
 
         height_string_rus = len(word) * letter_box_height
@@ -219,7 +245,9 @@ def open_play_game():
             word_russian[-1].place(x=start_x, y=start_y + i * (letter_box_height - 2),
                                    width=width_string, height=30)
 
-        button_next = Button(window_play_game, text="Давайте следующую!", command=next_level, font=font_button)
+        button_next = Button(window_play_game, text="Давайте следующую!", font=font_button)
+        button_next["command"] = lambda qwe=label_win: next_level(qwe)
+
         button_next.place(width=200, x=(WIDTH - 200) // 2, y=(HEIGHT - 6) // 2 + 150)
 
     def update_stress():
@@ -281,7 +309,8 @@ def open_play_game():
                 ВОЗМОЖНО, В STOP_GAME НЕ НУЖНО СТИРАТЬ УГАДАННЫЕ БУКВЫ, А ОТКРЫТЬ ИХ ВСЕ
                 
                 """
-                label_game_over = Label(window_play_game, text="ГАМЕ ОВЕР", font=font_game_over, background=MAIN_COLOR, fg=LIGHT_BLUE_COLOR)
+                label_game_over = Label(window_play_game, text="ГАМЕ ОВЕР", font=font_game_over, background=MAIN_COLOR,
+                                        fg=LIGHT_BLUE_COLOR)
                 label_game_over.place(width=400, x=(WIDTH - 400) // 2, y=(HEIGHT - 20) // 2 - 100)
 
                 # Кнопка ВЫХОД В ГЛАВНОЕ МЕНЮ
@@ -420,7 +449,7 @@ def open_authors():
     window_authors_y = int((window.winfo_screenheight() - HEIGHT * 0.7) // 2)
     window_authors.geometry(f"{int(WIDTH * 0.6)}x{int(HEIGHT * 0.7)}+{window_authors_x}+{window_authors_y}")
     window_authors["bg"] = MAIN_COLOR
-    window_authors.overrideredirect(1)
+    window_authors.overrideredirect(0)
 
     button_exit = Button(window_authors, text="ОК", font=font_button, command=window_authors_destroy, width=10)
     button_exit.place(relx=0.5, rely=0.90, anchor=CENTER)
@@ -463,7 +492,7 @@ POS_Y = window.winfo_screenheight() // 2 - HEIGHT // 6
 window.geometry(f"{WIDTH // 2}x{int(HEIGHT // 2.5)}+{POS_X}+{POS_Y}")
 
 window.resizable(False, False)
-window.overrideredirect(1)
+window.overrideredirect(0)
 
 # Фоновый цвет в HEX
 window["bg"] = MAIN_COLOR
