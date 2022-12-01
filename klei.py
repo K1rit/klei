@@ -106,9 +106,9 @@ def open_play_game():
 
         label_category.destroy()
 
-        label_sas = Label(window_play_game, text="Вы прошли игру klei!", font=font_caption_text, background=MAIN_COLOR,
+        label_sas = Label(window_play_game, text="Вы закончили игру KLEI!", font=font_caption_text, background=MAIN_COLOR,
                                foreground=TEXT_COLOR)
-        label_sas.place(width=450, x=(WIDTH - 450) // 2, y=(HEIGHT - 6) // 2 - 230)
+        label_sas.place(width=450, x=(WIDTH - 450) // 2, y=(HEIGHT - 6) // 2 - 200)
 
         label_win_game = Label(window_play_game, text="Победа!", font=font_win_game, background=MAIN_COLOR,
                                foreground=TEXT_COLOR)
