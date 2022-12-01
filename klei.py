@@ -91,8 +91,17 @@ def open_play_game():
     # Когда игра закончена и человек победил
     # ===========================================================
     def win_game():
-        print("WIN GAME!")
-        pass
+        def win_game_destroy():
+            window_play_game.destroy()
+
+
+        label_win_game = Label(window_play_game, text="Победа!", font=font_win_game, background=MAIN_COLOR, foreground=TEXT_COLOR)
+        label_win_game.place(width=450, x=(WIDTH - 450) // 2, y=(HEIGHT - 6) // 2 - 190)
+
+        button_win_game = Button(window_play_game, command=win_game_destroy, text="выйти в главное меню", font=font_button_win_game)
+        button_win_game.place(width=240, x=(WIDTH - 240) // 2, y=(HEIGHT - 6) // 2)
+        
+
 
     # ===========================================================
 
