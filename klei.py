@@ -96,12 +96,15 @@ def open_play_game():
 
 
         label_win_game = Label(window_play_game, text="Победа!", font=font_win_game, background=MAIN_COLOR, foreground=TEXT_COLOR)
-        label_win_game.place(width=450, x=(WIDTH - 450) // 2, y=(HEIGHT - 6) // 2 - 190)
+        label_win_game.place(width=450, x=(WIDTH - 450) // 2, y=(HEIGHT - 6) // 2 - 180)
 
-        button_win_game = Button(window_play_game, command=win_game_destroy, text="выйти в главное меню", font=font_button_win_game)
-        button_win_game.place(width=240, x=(WIDTH - 240) // 2, y=(HEIGHT - 6) // 2)
+        button_win_game = Button(window_play_game, command=win_game_destroy, text="Выйти в главное меню", font=font_button_win_game)
+        button_win_game.place(width=240, x=(WIDTH - 240) // 2, y=(HEIGHT - 6) // 2 + 180)
         
+        image_cat = Label(window_play_game, image=image_cat_win_boc, background=MAIN_COLOR)
+        image_cat.place(width=240, x=(WIDTH - 240) // 2, y=(HEIGHT - 6) // 2 - 100)
 
+        label_category.destroy()
 
     # ===========================================================
 
@@ -510,7 +513,7 @@ window["bg"] = MAIN_COLOR
 
 image_stress = tkinter.PhotoImage(file='png/stress.png')
 image_smile = tkinter.PhotoImage(file='png/smile.png')
-
+image_cat_win_boc = tkinter.PhotoImage(file='png/bokser.png')
 label_version = ttk.Label(text=f"Версия {VERSION}", anchor="sw", background=MAIN_COLOR, foreground=TEXT_COLOR)
 label_version.place(relx=0.03, rely=0.87)
 
