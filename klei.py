@@ -80,6 +80,8 @@ def stop_game():
     for i in range(len(word_labels)):
         word_labels[i].destroy()
 
+    Sound().play(Sound.LOSE_GAME)
+
     deactivate_button()
 
 
@@ -91,20 +93,29 @@ def open_play_game():
     # Когда игра закончена и человек победил
     # ===========================================================
     def win_game():
+        print(f"1. Label MEMORY: {id(label_category)}")
+
         def win_game_destroy():
+            window.focus_set()
+            setup.reset_file()
+            setup.load_variables()
+            update_key_on_main_window()
             window_play_game.destroy()
 
-
-        label_win_game = Label(window_play_game, text="Победа!", font=font_win_game, background=MAIN_COLOR, foreground=TEXT_COLOR)
-        label_win_game.place(width=450, x=(WIDTH - 450) // 2, y=(HEIGHT - 6) // 2 - 180)
-
-        button_win_game = Button(window_play_game, command=win_game_destroy, text="Выйти в главное меню", font=font_button_win_game)
-        button_win_game.place(width=240, x=(WIDTH - 240) // 2, y=(HEIGHT - 6) // 2 + 180)
-        
-        image_cat = Label(window_play_game, image=image_cat_win_boc, background=MAIN_COLOR)
-        image_cat.place(width=240, x=(WIDTH - 240) // 2, y=(HEIGHT - 6) // 2 - 100)
+        Sound().play(Sound.WIN_GAME)
 
         label_category.destroy()
+
+        label_win_game = Label(window_play_game, text="Победа!", font=font_win_game, background=MAIN_COLOR,
+                               foreground=TEXT_COLOR)
+        label_win_game.place(width=450, x=(WIDTH - 450) // 2, y=(HEIGHT - 6) // 2 - 180)
+
+        button_win_game = Button(window_play_game, command=win_game_destroy, text="Выйти в главное меню",
+                                 font=font_button_win_game)
+        button_win_game.place(width=240, x=(WIDTH - 240) // 2, y=(HEIGHT - 6) // 2 + 180)
+
+        image_cat = Label(window_play_game, image=image_cat_win_boc, background=MAIN_COLOR)
+        image_cat.place(width=240, x=(WIDTH - 240) // 2, y=(HEIGHT - 6) // 2 - 100)
 
     # ===========================================================
 
@@ -137,22 +148,52 @@ def open_play_game():
                 setup.helper = 3
                 setup.stress //= 2
 
-
         reset_level()
 
     def reset_level():
         global buttons, word_labels, word_russian, height_string, label_level
         global button_escape, button_help, label_stress, label_category, label_stress_image
-        global label_category, stress, button_reset
+        global stress, button_reset
         global button_help, button_escape
 
+        if buttons is not None:
+            for i in range(len(buttons) - 1, -1, -1):
+                del buttons[i]
+
         buttons = []
+
+        if word_russian is not None:
+            for i in range(len(word_russian) - 1, -1, -1):
+                del word_russian[i]
         word_russian = []
+
+        if word_labels is not None:
+            for i in range(len(word_labels) - 1, -1, -1):
+                del word_labels[i]
         word_labels = []
+
         height_string = 0
+
+
+        if label_stress_image is not None:
+            for i in range(len(label_stress_image) - 1, -1, -1):
+                del label_stress_image[i]
         label_stress_image = None
+
+        if label_stress is not None:
+            label_stress.destroy()
         label_stress = None
+
+        if label_category is not None:
+            label_category.destroy()
+
+        if label_category is not None:
+            label_category.destroy()
+
         label_category = None
+
+        if label_level is not None:
+            label_level.destroy()
         label_level = None
 
         # Нужно сбросить всё угаданное, то есть "закрыть" открытые ранее буквы
@@ -178,6 +219,7 @@ def open_play_game():
         if label_category is None:
             label_category = Label(window_play_game, text=game_data[setup.level].category, font=font_caption_text,
                                    background=MAIN_COLOR, foreground=TEXT_COLOR)
+            print(f"2. Label MEMORY: {id(label_category)}")
             label_width = label_category.winfo_reqwidth()
             label_category_x = (WIDTH - label_width) // 2
             label_category.place(x=label_category_x, rely=0.91)
@@ -259,7 +301,11 @@ def open_play_game():
             word_russian[-1].place(x=start_x, y=start_y + i * (letter_box_height - 2),
                                    width=width_string, height=30)
 
-        button_next = Button(window_play_game, text="Давайте следующую!", font=font_button)
+        msg = "Давайте следующую!"
+        if setup.level + 1 == len(game_data):
+            msg = "Насладиться победой!"
+
+        button_next = Button(window_play_game, text=msg, font=font_button)
         button_next["command"] = lambda qwe=label_win: next_level(qwe)
 
         button_next.place(width=200, x=(WIDTH - 200) // 2, y=(HEIGHT - 6) // 2 + 150)
