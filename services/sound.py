@@ -29,6 +29,7 @@ class Sound:
     WIN_ROUND = 5
     WIN_GAME = 6
     LOSE_GAME = 7
+    GONG = 8
 
     def button_press(self):
         playsound("sound/button_press.mp3")
@@ -52,6 +53,9 @@ class Sound:
     def lose_game(self):
         playsound("sound/lose_game.mp3")
 
+    def gong(self):
+        playsound("sound/gong.mp3")
+
 
     def play(self, type_sound):
         if not play_sound:
@@ -70,3 +74,5 @@ class Sound:
             Thread(target=self.win_game, daemon=True).start()
         elif type_sound == Sound.LOSE_GAME:
             Thread(target=self.lose_game, daemon=True).start()
+        elif type_sound == Sound.GONG:
+            Thread(target=self.gong, daemon=True).start()

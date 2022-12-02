@@ -89,12 +89,19 @@ def stop_game():
 def open_play_game():
     global window_play_game
 
+    # Анимация выезда категории
+    def moving_category(label_category, label_category_x, relY, current_x=WIDTH):
+        # Если окно открыто и элемент присутствует
+        if label_category.winfo_exists():
+            label_category.place(x=current_x, rely=relY)
+            if current_x > label_category_x:
+                current_x -= 2
+                window.after(10, lambda lc=label_category, lcx=label_category_x, rly=relY, cx=current_x: moving_category(lc, lcx, rly, cx))
+
     # ===========================================================
     # Когда игра закончена и человек победил
     # ===========================================================
     def win_game():
-        print(f"1. Label MEMORY: {id(label_category)}")
-
         def win_game_destroy():
             window.focus_set()
             setup.reset_file()
@@ -106,8 +113,9 @@ def open_play_game():
 
         label_category.destroy()
 
-        label_sas = Label(window_play_game, text="Вы закончили игру KLEI!", font=font_caption_text, background=MAIN_COLOR,
-                               foreground=TEXT_COLOR)
+        label_sas = Label(window_play_game, text="Вы закончили все уровни игры KLEI, просто супер", font=font_caption_text,
+                          background=MAIN_COLOR,
+                          foreground=LIGHT_BLUE_COLOR)
         label_sas.place(width=450, x=(WIDTH - 450) // 2, y=HEIGHT * 0.15)
 
         label_win_game = Label(window_play_game, text="Победа!", font=font_win_game, background=MAIN_COLOR,
@@ -126,8 +134,6 @@ def open_play_game():
     # Следующий уровень при нажатии на кнопку Хочу ещё!
     def next_level(label_win_round=None):
         global button_next, word_russian, word_labels
-
-        Sound().play(Sound.OK_LETS_GO)
 
         deactivate_button()
         button_next.destroy()
@@ -157,7 +163,7 @@ def open_play_game():
     def reset_level():
         global buttons, word_labels, word_russian, height_string, label_level
         global button_escape, button_help, label_stress, label_category, label_stress_image
-        global stress, button_reset
+        global stress, button_reset, old_category
         global button_help, button_escape
 
         if buttons is not None:
@@ -178,7 +184,6 @@ def open_play_game():
 
         height_string = 0
 
-
         if label_stress_image is not None:
             for i in range(len(label_stress_image) - 1, -1, -1):
                 del label_stress_image[i]
@@ -190,10 +195,6 @@ def open_play_game():
 
         if label_category is not None:
             label_category.destroy()
-
-        if label_category is not None:
-            label_category.destroy()
-
         label_category = None
 
         if label_level is not None:
@@ -223,10 +224,17 @@ def open_play_game():
         if label_category is None:
             label_category = Label(window_play_game, text=game_data[setup.level].category, font=font_caption_text,
                                    background=MAIN_COLOR, foreground=TEXT_COLOR)
-            print(f"2. Label MEMORY: {id(label_category)}")
             label_width = label_category.winfo_reqwidth()
             label_category_x = (WIDTH - label_width) // 2
-            label_category.place(x=label_category_x, rely=0.91)
+
+            # Если НОВАЯ категория, то звук гонга, иначе звук обыкновенного старта
+            if old_category != game_data[setup.level].category:
+                Sound().play(Sound.GONG)
+                moving_category(label_category, label_category_x, 0.91)
+                old_category = game_data[setup.level].category
+            else:
+                Sound().play(Sound.OK_LETS_GO)
+                label_category.place(x=label_category_x, rely=0.91)
 
         #    button_exit = Button(window_play_game, text="Сбежать", font=font_button, command=window_play_game_destroy, width=10, pady=3)
         #    button_exit.place(relx=0.85, rely=0.9)
@@ -297,7 +305,7 @@ def open_play_game():
             width_string = len(word[i]) * letter_box_rus
             start_x = (WIDTH - width_string) // 2
 
-            print(word[i])
+            # print(word[i])
 
             word_russian.append(Label(window_play_game, text=word[i], font=("Arial", 16), foreground=YELLOW_COLOR,
                                       background=MAIN_COLOR))
@@ -339,7 +347,7 @@ def open_play_game():
     def pressed_char(ch: str, num: int):
         global stress, buttons, word_labels, word_russian
 
-        print(f"Нажата кнопка: {ch} {num}")
+        # print(f"Нажата кнопка: {ch} {num}")
 
         # Получит, сколько символов УГАДАНО
         count_good_chars = game_data[setup.level].put_char(ch)
@@ -349,7 +357,7 @@ def open_play_game():
         # Список с переводом
         """
 
-        print(f"Список для вывода перевода: {game_data[setup.level].get_translate_ru()}")
+        # print(f"Список для вывода перевода: {game_data[setup.level].get_translate_ru()}")
 
         """
         # ==================================================================================================================
@@ -379,7 +387,7 @@ def open_play_game():
 
                 # Кнопка ВЫХОД В ГЛАВНОЕ МЕНЮ
                 button_exit_to_main_menu = Button(window_play_game, text="Главное меню", font=font_button)
-                button_exit_to_main_menu["command"] = window_play_game_destroy
+                button_exit_to_main_menu["command"] = lambda reset_data=True: window_play_game_destroy(reset_data)
                 button_exit_to_main_menu.place(width=200, x=(WIDTH - 200) // 2, y=(HEIGHT - 6) // 2 + 110)
 
                 # Кнопка ПОПРОБОВАТЬ ЕЩЁ РАЗ
@@ -389,6 +397,7 @@ def open_play_game():
                                                        lbl1=label_game_over: reset_game(btn1, btn2, lbl1)
                 # button_reset["command"] = reset_game
                 button_repeat_game.place(width=200, x=(WIDTH - 200) // 2, y=(HEIGHT - 6) // 2 + 70)
+
 
                 # label_reset = Label(window_play_game, text="dfjsgfsgf", background=MAIN_COLOR)
                 # label_reset.place(width=200, x=(WIDTH - 200) // 2, y=(HEIGHT - 6) // 2 + 150)
@@ -411,11 +420,14 @@ def open_play_game():
             word_labels.clear()
             start_word()
 
-        print(count_good_chars, game_data[setup.level].get_proposal(), game_data[setup.level].is_complete())
+        # print(count_good_chars, game_data[setup.level].get_proposal(), game_data[setup.level].is_complete())
 
-    def window_play_game_destroy():
+    def window_play_game_destroy(reset_data=False):
         Sound().play(Sound.BUTTON_PRESS)
-        if setup.level > 0:
+        if reset_data:
+            setup.reset_file()
+            setup.load_variables()
+        elif setup.level > 0:
             setup.save()
         window.focus_set()
         update_key_on_main_window()
@@ -581,7 +593,6 @@ button_authors = Button(window, text="Авторы", font=font_button, command=o
 button_authors.place(relx=0.5, rely=0.74, anchor=CENTER)
 
 game_data = JSONParser().get_list("data/database.dat", False)
-# game_data = JSONParser().get_list("data/database.dat", True)
 
 label_stress_image = None
 button_help = None
@@ -594,6 +605,7 @@ label_level = None
 height_string = None
 word_labels = None
 word_russian = None
+old_category = ""  # Старая категория, нужна для анимации смены категорий
 
 buttons = None
 button_next = None
