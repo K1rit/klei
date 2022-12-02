@@ -118,7 +118,7 @@ def open_play_game():
                           foreground=LIGHT_BLUE_COLOR)
         label_sas.place(width=450, x=(WIDTH - 450) // 2, y=HEIGHT * 0.15)
 
-        label_win_game = Label(window_play_game, text="Победа!", font=font_win_game, background=MAIN_COLOR,
+        label_win_game = Label(window_play_game, text="ПОБЕДА!", font=font_win_game, background=MAIN_COLOR,
                                foreground=TEXT_COLOR)
         label_win_game.place(width=450, x=(WIDTH - 450) // 2, y=(HEIGHT - 6) // 2 - 180)
 
