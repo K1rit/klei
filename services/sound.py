@@ -13,6 +13,8 @@ try:
     # from winsound.PlaySound import winsound.PlaySound
     import pygame
     pygame.init()
+    pygame.mixer.init(48000, 32, 2, 2048)
+
 except ImportError:
     from tkinter import messagebox
 
