@@ -43,42 +43,42 @@ class Sound:
     STRESS = 9
 
     def button_press(self):
-        pygame.mixer.Sound("sound/button_press.mp3").play()
+        pygame.mixer.Sound("sound/button_press.wav").play()
 
     def start_game(self):
-        pygame.mixer.Sound("sound/start_game.mp3").play()
+        pygame.mixer.Sound("sound/start_game.wav").play()
 
     def good_char(self):
-        pygame.mixer.Sound("sound/good_char.mp3").play()
+        pygame.mixer.Sound("sound/good_char.wav").play()
 
     def ok_lets_go(self):
-        pygame.mixer.Sound("sound/start_game.mp3").play()
+        pygame.mixer.Sound("sound/start_game.wav").play()
 
     def win_round(self):
-        pygame.mixer.Sound("sound/win_round.mp3").play()
+        pygame.mixer.Sound("sound/win_round.wav").play()
 
     def win_game(self):
-        pygame.mixer.Sound("sound/win_game.mp3").play()
+        pygame.mixer.Sound("sound/win_game.wav").play()
 
     def lose_game(self):
-        pygame.mixer.Sound("sound/lose_game.mp3").play()
+        pygame.mixer.Sound("sound/lose_game.wav").play()
 
     def gong(self):
-        pygame.mixer.Sound("sound/gong.mp3").play()
+        pygame.mixer.Sound("sound/gong.wav").play()
 
     def stress(self):
 
-        files = ["sound/bad/bad01.mp3",
-                 "sound/bad/bad02.mp3",
-                 "sound/bad/bad03.mp3",
-                 "sound/bad/bad04.mp3",
-                 "sound/bad/bad05.mp3",
-                 "sound/bad/bad06.mp3",
-                 "sound/bad/bad07.mp3",
-                 "sound/bad/bad08.mp3",
-                 "sound/bad/bad09.mp3",
-                 "sound/bad/bad10.mp3",
-                 "sound/bad/bad11.mp3"
+        files = ["sound/bad/bad01.wav",
+                 "sound/bad/bad02.wav",
+                 "sound/bad/bad03.wav",
+                 "sound/bad/bad04.wav",
+                 "sound/bad/bad05.wav",
+                 "sound/bad/bad06.wav",
+                 "sound/bad/bad07.wav",
+                 "sound/bad/bad08.wav",
+                 "sound/bad/bad09.wav",
+                 "sound/bad/bad10.wav",
+                 "sound/bad/bad11.wav"
                  ]
         if setup.stress - 1 < len(files):
             pygame.mixer.Sound(files[setup.stress - 1]).play()
