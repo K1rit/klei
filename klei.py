@@ -370,6 +370,7 @@ def open_play_game():
         else:
             buttons[num]['text'] = ":|"
             setup.stress += 1
+            Sound().play(Sound.STRESS)
 
             if setup.stress > 10:
                 setup.stress = 10
