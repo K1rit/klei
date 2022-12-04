@@ -77,8 +77,7 @@ class Sound:
                  "sound/bad/bad07.mp3",
                  "sound/bad/bad08.mp3",
                  "sound/bad/bad09.mp3",
-                 "sound/bad/bad10.mp3",
-                 "sound/bad/bad11.mp3"
+                 "sound/bad/bad10.mp3"
                  ]
         if setup.stress - 1 < len(files):
             pygame.mixer.Sound(files[setup.stress - 1]).play()
