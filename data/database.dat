@@ -1,271 +1,271 @@
 {
-    "THEMES": [
-        {
-        "CATEGORY": "Категория 1. Приветствия",
-        "WORDS": [
-            {
-                "words_en": "Hi! I'm human too, let's be friends?",
-                "words_ru": "Привет! Я тоже человек, будем друзьями?"
-            },
-            {
-                "words_en": "Guess what my name is?",
-                "words_ru": "Угадайте, как меня зовут?"
-            },
-            {
-                "words_en": "Open up, please, I urgently need to stay with you",
-                "words_ru": "Откройте пожалуйста, мне срочно надо у вас пожить"
-            },
-			{
-                "words_en": "Goodbye, I always hated you!",
-                "words_ru": "Прощайте, я вас всегда ненавидел!"
-            },
-			{
-                "words_en": "Who are you and why should I care?",
-                "words_ru": "Кто вы такие и почему это должно меня волновать?"
-            },
-			{
-                "words_en": "Are you talking to me?",
-                "words_ru": "Ты со мной говоришь?"
-			{
-            ]
-        },
+	"THEMES": [
+		{
+			"CATEGORY": "Категория 1. Приветствия",
+			"WORDS": [
+				{
+					"words_en": "Hi! I'm human too, let's be friends?",
+					"words_ru": "Привет! Я тоже человек, будем друзьями?"
+				},
+				{
+					"words_en": "Guess what my name is?",
+					"words_ru": "Угадайте, как меня зовут?"
+				},
+				{
+					"words_en": "Open up, please, I urgently need to stay with you",
+					"words_ru": "Откройте пожалуйста, мне срочно надо у вас пожить"
+				},
+				{
+					"words_en": "Goodbye, I always hated you!",
+					"words_ru": "Прощайте, я вас всегда ненавидел!"
+				},
+				{
+					"words_en": "Who are you and why should I care?",
+					"words_ru": "Кто вы такие и почему это должно меня волновать?"
+				},
+				{
+					"words_en": "Are you talking to me?",
+					"words_ru": "Ты со мной говоришь?"
+				}
+			]
+		},
 
-        {
-        "CATEGORY": "Категория 2. Голод не тётка",
-        "WORDS": [
-            {
-                "words_en": "I'm hungry again",
-                "words_ru": "Я опять хочу есть"
-            },
-            {
-                "words_en": "Where is your cheapest restaurant?",
-                "words_ru": "Где у вас самый дешёвый ресторан?"
-            },
-            {
-                "words_en": "Do you have discounts on your products?",
-                "words_ru": "Ваша еда по скидке?"
-            },
-			{
-                "words_en": "Will you share the soup with me?",
-                "words_ru": "Вы не поделитесь со мной супом?"
-            },
-			{
-                "words_en": "I'm thirsty, where's your gas station?",
-                "words_ru": "Я хочу пить, где у вас заправка?"
-            }
-            ]
-        },
-        {
-        "CATEGORY": "Категория 3. Встречают по одежде",
-        "WORDS": [
-            {
-                "words_en": "I need your clothes and your motorcycle",
-                "words_ru": "Мне нужна твоя одежда и мотоцикл"
-            },
-            {
-                "words_en": "Your buttons don't zip, give the money back",
-                "words_ru": "Ваши пуговицы не застёгиваются, верните деньги"
-            },
-            {
-                "words_en": "Give me your crimson jacket and gold chain",
-                "words_ru": "Отдайте ваш малиновый пиджак и золотую цепь"
-            },
-			{
-                "words_en": "Does your store have discounted holey shirts?",
-                "words_ru": "В вашем магазине есть дырявые рубахи со скидкой?"
-            },
-			{
-                "words_en": "Surely this is your coat?",
-                "words_ru": "Это точно ваше пальто?"
-            }
-            ]
-        },
 		{
-        "CATEGORY": "Категория 4. Размещение в отеле",
-        "WORDS": [
-			{
-                "words_en": "Do you accept fake passports?",
-                "words_ru": "Вы принимаете фальшивые паспорта?"
-            },
-            {
-                "words_en": "Can I sleep lying down here?",
-                "words_ru": "А у вас можно спать лежа?"
-            },
-            {
-                "words_en": "Which room can I live in for ten years?",
-                "words_ru": "В каком номере я точно смогу прожить десять лет?"
-            },
-			{
-                "words_en": "Don't bother me tomorrow, I have money to print.",
-                "words_ru": "Не беспокойте меня завтра, мне надо напечатать денег"
-            },
-			{
-                "words_en": "Do you rent out rooms on a mortgage?",
-                "words_ru": "Вы сдаёте номера в ипотеку?"
-            }
-            ]
-        },
-		{
-        "CATEGORY": "Категория 5. Поездки, вокзал, транспорт",
-        "WORDS": [
-            {
-                "words_en": "Where are the sleeping places on your tram?",
-                "words_ru": "Где спальные места в вашем трамвае?"
-            },
-            {
-                "words_en": "Show me where a kitchen and a clean pot is",
-                "words_ru": "Покажите, где у вас кухня и чистая кастрюля"
-            },
-            {
-                "words_en": "Calm down your conductor!",
-                "words_ru": "Успокойте вашего кондуктора!"
-            },
-            {
-                "words_en": "Do you have a valid Voronezh travel card?",
-                "words_ru": "У вас действует проездная карта Воронежа?"
-            },
-            {
-                "words_en": "How can I get where I want to go?",
-                "words_ru": "Как я могу доехать куда хочу?"
-            },
-			{
-                "words_en": "Do you accept wrappers?",
-                "words_ru": "Вы принимаете фантики?"
-            }
-            ]
-        },
-		{
-        "CATEGORY": "Категория 6. Покупки, магазины, ломбарды",
-        "WORDS": [
-            {
-                "words_en": "It's free at the store next door, make it a discount",
-                "words_ru": "В соседнем магазине это бесплатно, сделайте скидку"
-            },
-            {
-                "words_en": "Can I give away my cat?",
-                "words_ru": "Можно я сдам свою кошку?"
-            },
-            {
-                "words_en": "Do you have black ritual candles?",
-                "words_ru": "У вас есть чёрные ритуальные свечи?"
-            },
-			{
-                "words_en": "Don't shout at me, I brought it with me",
-                "words_ru": "Не кричите на меня, это я принёс с собой"
-            },
-            {
-                "words_en": "Do you sell expired yogurt?",
-                "words_ru": "Вы продаете просроченный йогурт?"
-            },
-			{
-                "words_en": "Your director owes me money, give it to him",
-                "words_ru": "Ваш руководитель должен мне денег, отдайте за него"
-            }
+			"CATEGORY": "Категория 2. Голод не тётка",
+			"WORDS": [
+				{
+					"words_en": "I'm hungry again",
+					"words_ru": "Я опять хочу есть"
+				},
+				{
+					"words_en": "Where is your cheapest restaurant?",
+					"words_ru": "Где у вас самый дешёвый ресторан?"
+				},
+				{
+					"words_en": "Do you have discounts on your products?",
+					"words_ru": "Ваша еда по скидке?"
+				},
+				{
+					"words_en": "Will you share the soup with me?",
+					"words_ru": "Вы не поделитесь со мной супом?"
+				},
+				{
+					"words_en": "I'm thirsty, where's your gas station?",
+					"words_ru": "Я хочу пить, где у вас заправка?"
+				}
 			]
 		},
 		{
-        "CATEGORY": "Категория 7. Полиция, суды, правоохранительные органы",
-        "WORDS": [
-            {
-                "words_en": "I can bang the gavel instead of the judge",
-                "words_ru": "Я могу стучать молотком вместо судьи"
-            },
-            {
-                "words_en": "My lawyer doesn't understand my suffering",
-                "words_ru": "Мой адвокат не понимает моих страданий"
-            },
-            {
-                "words_en": "What time does the quiet hour begin in your prison?",
-                "words_ru": "Во сколько начинается тихий час в вашей тюрьме?"
-            },
-			{
-                "words_en": "Please give me your baton as a keepsake",
-                "words_ru": "Подарите, пожалуйста, вашу дубинку на память"
-            },
-            {
-                "words_en": "I escaped, what should I do next?",
-                "words_ru": "Я сбежал, что мне делать дальше?"
-            },
-			{
-                "words_en": "Your Honor, where is the exit?",
-                "words_ru": "Ваша честь, где тут выход?"
-            }
+			"CATEGORY": "Категория 3. Встречают по одежде",
+			"WORDS": [
+				{
+					"words_en": "I need your clothes and your motorcycle",
+					"words_ru": "Мне нужна твоя одежда и мотоцикл"
+				},
+				{
+					"words_en": "Your buttons don't zip, give the money back",
+					"words_ru": "Ваши пуговицы не застёгиваются, верните деньги"
+				},
+				{
+					"words_en": "Give me your crimson jacket and gold chain",
+					"words_ru": "Отдайте ваш малиновый пиджак и золотую цепь"
+				},
+				{
+					"words_en": "Does your store have discounted holey shirts?",
+					"words_ru": "В вашем магазине есть дырявые рубахи со скидкой?"
+				},
+				{
+					"words_en": "Surely this is your coat?",
+					"words_ru": "Это точно ваше пальто?"
+				}
 			]
 		},
 		{
-        "CATEGORY": "Категория 8. Аптеки, поликлиники",
-        "WORDS": [
-            {
-                "words_en": "Doctor, I’m here to work in your place",
-                "words_ru": "Доктор, я пришёл поработать вместо вас"
-            },
-            {
-                "words_en": "Do you sell rat poison?",
-                "words_ru": "Вы продаете крысиный яд?"
-            },
-            {
-                "words_en": "I just need to ask, don't push.",
-                "words_ru": "Мне только спросить, не толкайтесь"
-            },
-			{
-                "words_en": "Do you treat with herbs and tinctures?",
-                "words_ru": "Вы лечите травами и настойками?"
-            },
-            {
-                "words_en": "So what if I wrote this recipe myself",
-                "words_ru": "Ну и что, что я сам написал этот рецепт"
-            }
+			"CATEGORY": "Категория 4. Размещение в отеле",
+			"WORDS": [
+				{
+					"words_en": "Do you accept fake passports?",
+					"words_ru": "Вы принимаете фальшивые паспорта?"
+				},
+				{
+					"words_en": "Can I sleep lying down here?",
+					"words_ru": "А у вас можно спать лежа?"
+				},
+				{
+					"words_en": "Which room can I live in for ten years?",
+					"words_ru": "В каком номере я точно смогу прожить десять лет?"
+				},
+				{
+					"words_en": "Don't bother me tomorrow, I have money to print.",
+					"words_ru": "Не беспокойте меня завтра, мне надо напечатать денег"
+				},
+				{
+					"words_en": "Do you rent out rooms on a mortgage?",
+					"words_ru": "Вы сдаёте номера в ипотеку?"
+				}
 			]
 		},
 		{
-        "CATEGORY": "Категория 9. Туризм, достопримечательности",
-        "WORDS": [
-            {
-                "words_en": "Can I take it with me to the cottage?",
-                "words_ru": "Могу ли увезти это на дачу?"
-            },
-            {
-                "words_en": "It's a cheap fake, give the money back",
-                "words_ru": "Это дешёвая подделка, верните деньги"
-            },
-            {
-                "words_en": "I can draw the same, even better",
-                "words_ru": "Я могу нарисовать такое же, даже лучше"
-            },
-			{
-                "words_en": "Can I perform at the Colosseum?",
-                "words_ru": "Могу я выступить в Колизее?"
-            },
-            {
-                "words_en": "I want to buy your king's crown",
-                "words_ru": "Я хочу купить корону вашего короля"
-            }
+			"CATEGORY": "Категория 5. Поездки, вокзал, транспорт",
+			"WORDS": [
+				{
+					"words_en": "Where are the sleeping places on your tram?",
+					"words_ru": "Где спальные места в вашем трамвае?"
+				},
+				{
+					"words_en": "Show me where a kitchen and a clean pot is",
+					"words_ru": "Покажите, где у вас кухня и чистая кастрюля"
+				},
+				{
+					"words_en": "Calm down your conductor!",
+					"words_ru": "Успокойте вашего кондуктора!"
+				},
+				{
+					"words_en": "Do you have a valid Voronezh travel card?",
+					"words_ru": "У вас действует проездная карта Воронежа?"
+				},
+				{
+					"words_en": "How can I get where I want to go?",
+					"words_ru": "Как я могу доехать куда хочу?"
+				},
+				{
+					"words_en": "Do you accept wrappers?",
+					"words_ru": "Вы принимаете фантики?"
+				}
 			]
 		},
 		{
-        "CATEGORY": "Категория 10. Прощание, завершение разговора",
-        "WORDS": [
-            {
-                "words_en": "May the Force be with you",
-                "words_ru": "Да прибудет с тобой Сила"
-            },
-            {
-                "words_en": "You talk and I lie down.",
-                "words_ru": "Вы рассказывайте, а я прилягу"
-            },
-            {
-                "words_en": "Oh, stop",
-                "words_ru": "Ой, всё!"
-            },
-			{
-                "words_en": "Bye, I'll try to remember your face",
-                "words_ru": "Пока, я постараюсь запомнить ваше лицо"
-            },
-            {
-                "words_en": "I'll be back.",
-                "words_ru": "Я еще вернусь "
-            }
+			"CATEGORY": "Категория 6. Покупки, магазины, ломбарды",
+			"WORDS": [
+				{
+					"words_en": "It's free at the store next door, make it a discount",
+					"words_ru": "В соседнем магазине это бесплатно, сделайте скидку"
+				},
+				{
+					"words_en": "Can I give away my cat?",
+					"words_ru": "Можно я сдам свою кошку?"
+				},
+				{
+					"words_en": "Do you have black ritual candles?",
+					"words_ru": "У вас есть чёрные ритуальные свечи?"
+				},
+				{
+					"words_en": "Don't shout at me, I brought it with me",
+					"words_ru": "Не кричите на меня, это я принёс с собой"
+				},
+				{
+					"words_en": "Do you sell expired yogurt?",
+					"words_ru": "Вы продаете просроченный йогурт?"
+				},
+				{
+					"words_en": "Your director owes me money, give it to him",
+					"words_ru": "Ваш руководитель должен мне денег, отдайте за него"
+				}
 			]
- 	    }
- 	]
+		},
+		{
+			"CATEGORY": "Категория 7. Полиция, суды, правоохранительные органы",
+			"WORDS": [
+				{
+					"words_en": "I can bang the gavel instead of the judge",
+					"words_ru": "Я могу стучать молотком вместо судьи"
+				},
+				{
+					"words_en": "My lawyer doesn't understand my suffering",
+					"words_ru": "Мой адвокат не понимает моих страданий"
+				},
+				{
+					"words_en": "What time does the quiet hour begin in your prison?",
+					"words_ru": "Во сколько начинается тихий час в вашей тюрьме?"
+				},
+				{
+					"words_en": "Please give me your baton as a keepsake",
+					"words_ru": "Подарите, пожалуйста, вашу дубинку на память"
+				},
+				{
+					"words_en": "I escaped, what should I do next?",
+					"words_ru": "Я сбежал, что мне делать дальше?"
+				},
+				{
+					"words_en": "Your Honor, where is the exit?",
+					"words_ru": "Ваша честь, где тут выход?"
+				}
+			]
+		},
+		{
+			"CATEGORY": "Категория 8. Аптеки, поликлиники",
+			"WORDS": [
+				{
+					"words_en": "Doctor, I’m here to work in your place",
+					"words_ru": "Доктор, я пришёл поработать вместо вас"
+				},
+				{
+					"words_en": "Do you sell rat poison?",
+					"words_ru": "Вы продаете крысиный яд?"
+				},
+				{
+					"words_en": "I just need to ask, don't push.",
+					"words_ru": "Мне только спросить, не толкайтесь"
+				},
+				{
+					"words_en": "Do you treat with herbs and tinctures?",
+					"words_ru": "Вы лечите травами и настойками?"
+				},
+				{
+					"words_en": "So what if I wrote this recipe myself",
+					"words_ru": "Ну и что, что я сам написал этот рецепт"
+				}
+			]
+		},
+		{
+			"CATEGORY": "Категория 9. Туризм, достопримечательности",
+			"WORDS": [
+				{
+					"words_en": "Can I take it with me to the cottage?",
+					"words_ru": "Могу ли увезти это на дачу?"
+				},
+				{
+					"words_en": "It's a cheap fake, give the money back",
+					"words_ru": "Это дешёвая подделка, верните деньги"
+				},
+				{
+					"words_en": "I can draw the same, even better",
+					"words_ru": "Я могу нарисовать такое же, даже лучше"
+				},
+				{
+					"words_en": "Can I perform at the Colosseum?",
+					"words_ru": "Могу я выступить в Колизее?"
+				},
+				{
+					"words_en": "I want to buy your king's crown",
+					"words_ru": "Я хочу купить корону вашего короля"
+				}
+			]
+		},
+		{
+			"CATEGORY": "Категория 10. Прощание, завершение разговора",
+			"WORDS": [
+				{
+					"words_en": "May the Force be with you",
+					"words_ru": "Да прибудет с тобой Сила"
+				},
+				{
+					"words_en": "You talk and I lie down.",
+					"words_ru": "Вы рассказывайте, а я прилягу"
+				},
+				{
+					"words_en": "Oh, stop",
+					"words_ru": "Ой, всё!"
+				},
+				{
+					"words_en": "Bye, I'll try to remember your face",
+					"words_ru": "Пока, я постараюсь запомнить ваше лицо"
+				},
+				{
+					"words_en": "I'll be back.",
+					"words_ru": "Я еще вернусь "
+				}
+			]
+		}
+	]
 }
