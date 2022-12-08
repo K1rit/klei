@@ -63,7 +63,7 @@ class Datatype:
         # 0, если пользователь не угадал ничего
         ret = 0
         tmp = self.words_en.upper()
-        print(self.words_en.upper())
+        # print(self.words_en.upper())
         for i in range(len(tmp)):
             if ch == tmp[i] and not self.enabled_chars[i]:
                 self.enabled_chars[i] = True

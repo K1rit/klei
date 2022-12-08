@@ -23,6 +23,7 @@ def reset_file():
         f.write("level=0\n")
         f.write("stress=0\n")
         f.write("helper=3\n")
+        f.write("score=0\n")
         f.close()
     except:
         print("Ошибка записи файла.")
@@ -33,18 +34,20 @@ def save():
     f.write(f"level={level}\n")
     f.write(f"stress={stress}\n")
     f.write(f"helper={helper}\n")
+    f.write(f"score={score}\n")
     f.close()
 
 
 def load_variables():
-    global level, stress, helper
+    global level, stress, helper, score
     load_result = load()
     level = int(load_result['level'])
     stress = int(load_result['stress'])
     helper = int(load_result['helper'])
+    score = int(load_result['score'])
 
 
-WIDTH = 700
+WIDTH = 800
 HEIGHT = 640
 MARGIN = 50
 VERSION = 0.4
@@ -58,8 +61,7 @@ font_game_over = ("Arial", 40, "bold")
 font_prize = ("Arial", 50, "bold")
 font_win_game = ("Arial", 50, "bold")
 font_button_win_game = ("Arial", 13, "bold")
-# MAIN_COLOR = "#3c3f41"
-# MAIN_COLOR = "#1976D2"
+# MAIN_COLOR = "#512DA8"
 MAIN_COLOR = "#512DA8"
 WHITE_COLOR = "#FFFFFF"
 YELLOW_COLOR = "#fff000"
@@ -98,6 +100,7 @@ helper_text = ["Подсказок нет", "Подсказки: 1", "Подск
 level = None
 stress = None
 helper = None
+score = None
 
 load_variables()
 

@@ -162,7 +162,7 @@ def open_play_game():
 
     def reset_level():
         global buttons, word_labels, word_russian, height_string, label_level
-        global button_escape, button_help, label_stress, label_category, label_stress_image
+        global button_escape, button_help, label_score, label_stress, label_category, label_stress_image
         global stress, button_reset, old_category
         global button_help, button_escape
 
@@ -201,6 +201,10 @@ def open_play_game():
             label_level.destroy()
         label_level = None
 
+        if label_score is not None:
+            label_score.destroy()
+        label_score = None
+
         # Нужно сбросить всё угаданное, то есть "закрыть" открытые ранее буквы
         game_data[setup.level].reset_data()
 
@@ -219,6 +223,13 @@ def open_play_game():
             label_level = tkinter.Label(window_play_game, text=f"Уровень: {setup.level + 1}", font=font_caption_text,
                                         background=MAIN_COLOR, foreground=TEXT_COLOR)
             label_level.place(x=20, y=17)
+
+        # Очки
+        if label_score is None:
+            label_score = tkinter.Label(window_play_game, text=f"Очки: {setup.score}",
+                                        font=font_caption_text,
+                                        background=MAIN_COLOR, foreground=TEXT_COLOR)
+            label_score.place(x=48, y=40)
 
         # Метка - название категории
         if label_category is None:
@@ -242,9 +253,11 @@ def open_play_game():
         button_escape = Button(window_play_game, text="Сбежать", font=font_button, command=window_play_game_destroy,
                                width=12, pady=3)
         button_escape.place(relx=0.835, rely=0.9)
+
         button_help = Button(window_play_game, text=helper_text[setup.helper], font=font_button, width=12, pady=3)
         button_help["command"] = lambda btn=button_help: help_me(btn)
         button_help.place(relx=0.02, rely=0.9)
+
         if setup.helper == 0:
             button_help["state"] = DISABLED
 
@@ -365,11 +378,20 @@ def open_play_game():
 
         buttons[num].config(state="disabled")
 
+        # Если человек угадал хотя бы одну букву...
         if count_good_chars > 0:
             buttons[num]['text'] = ":)"
+            setup.score += 1
+            label_score["text"] = f"Очки: {setup.score}"
         else:
+            setup.score -= 3
+            if setup.score < 0:
+                setup.score = 0
+
+            label_score["text"] = f"Очки: {setup.score}"
             buttons[num]['text'] = ":|"
             setup.stress += 1
+
             Sound().play(Sound.STRESS)
 
             if setup.stress > 10:
@@ -582,7 +604,7 @@ window.title("Klei")
 # Окно по центру, рассчитывается от размеров экрана
 POS_X = window.winfo_screenwidth() // 2 - WIDTH // 4
 POS_Y = window.winfo_screenheight() // 2 - HEIGHT // 6
-window.geometry(f"{WIDTH // 2}x{int(HEIGHT // 2.5)}+{POS_X}+{POS_Y}")
+window.geometry(f"{int(WIDTH * 0.45)}x{int(HEIGHT * 0.45)}+{POS_X}+{POS_Y}")
 
 window.resizable(False, False)
 window.overrideredirect(1)
@@ -594,23 +616,23 @@ image_stress = tkinter.PhotoImage(file='png/stress.png')
 image_smile = tkinter.PhotoImage(file='png/smile.png')
 image_cat_win_boc = tkinter.PhotoImage(file='png/bokser.png')
 label_version = ttk.Label(text=f"Версия {VERSION}", anchor="sw", background=MAIN_COLOR, foreground=TEXT_COLOR)
-label_version.place(relx=0.03, rely=0.87)
+label_version.place(relx=0.03, rely=0.9)
 
 button_continue = Button(window, text="Продолжить", font=font_button, command=create_window, width=30, pady=3)
-button_continue.place(relx=0.5, rely=0.13, anchor=CENTER)
+button_continue.place(relx=0.5, rely=0.19, anchor=CENTER)
 
 button_game = Button(window, text="Начать заново", font=font_button,
                      command=lambda new_game=True: create_window(new_game), width=30, pady=3)
-button_game.place(relx=0.5, rely=0.29, anchor=CENTER)
+button_game.place(relx=0.5, rely=0.34, anchor=CENTER)
 
 button_root = Button(window, text="Правила", font=font_button, command=open_root, width=30, pady=3)
-button_root.place(relx=0.5, rely=0.45, anchor=CENTER)
+button_root.place(relx=0.5, rely=0.49, anchor=CENTER)
 
 button_exit = Button(window, text="Выход", font=font_button, command=quit_game, width=30, pady=3)
-button_exit.place(relx=0.5, rely=0.61, anchor=CENTER)
+button_exit.place(relx=0.5, rely=0.64, anchor=CENTER)
 
 button_authors = Button(window, text="Авторы", font=font_button, command=open_authors, width=30, pady=3)
-button_authors.place(relx=0.5, rely=0.77, anchor=CENTER)
+button_authors.place(relx=0.5, rely=0.79, anchor=CENTER)
 
 game_data = JSONParser().get_list("data/database.dat", False)
 
@@ -619,6 +641,7 @@ button_help = None
 button_escape = None
 button_reset = None
 label_stress = None
+label_score = None
 label_category = None
 window_play_game = None
 label_level = None
