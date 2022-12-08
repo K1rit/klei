@@ -510,7 +510,23 @@ def open_play_game():
                 num_element += 1
 
     reset_level()
+# Правила игры
+def open_root():
+    def window_root_destroy():
+        Sound().play(Sound.BUTTON_PRESS)
+        window_root.destroy()
 
+    window_root = Toplevel()
+    window_root.grab_set()
+
+    window_root_x = int(window.winfo_screenwidth() - WIDTH * 0.6) // 2
+    window_root_y = int((window.winfo_screenheight() - HEIGHT * 0.7) // 2)
+    window_root.geometry(f"{int(WIDTH * 0.6)}x{int(HEIGHT * 0.7)}+{window_root_x}+{window_root_y}")
+    window_root["bg"] = MAIN_COLOR
+    window_root.overrideredirect(1)
+
+    butoon_exit_root = Button(window_root, text="Что?", font=font_button, command=window_root_destroy, width=10)
+    butoon_exit_root.place(relx=0.5, rely=0.5, anchor=CENTER)
 
 # Окно авторов
 def open_authors():
@@ -581,17 +597,20 @@ label_version = ttk.Label(text=f"Версия {VERSION}", anchor="sw", backgroun
 label_version.place(relx=0.03, rely=0.87)
 
 button_continue = Button(window, text="Продолжить", font=font_button, command=create_window, width=30, pady=3)
-button_continue.place(relx=0.5, rely=0.20, anchor=CENTER)
+button_continue.place(relx=0.5, rely=0.13, anchor=CENTER)
 
 button_game = Button(window, text="Начать заново", font=font_button,
                      command=lambda new_game=True: create_window(new_game), width=30, pady=3)
-button_game.place(relx=0.5, rely=0.38, anchor=CENTER)
+button_game.place(relx=0.5, rely=0.29, anchor=CENTER)
+
+button_root = Button(window, text="Правила", font=font_button, command=open_root, width=30, pady=3)
+button_root.place(relx=0.5, rely=0.45, anchor=CENTER)
 
 button_exit = Button(window, text="Выход", font=font_button, command=quit_game, width=30, pady=3)
-button_exit.place(relx=0.5, rely=0.56, anchor=CENTER)
+button_exit.place(relx=0.5, rely=0.61, anchor=CENTER)
 
 button_authors = Button(window, text="Авторы", font=font_button, command=open_authors, width=30, pady=3)
-button_authors.place(relx=0.5, rely=0.74, anchor=CENTER)
+button_authors.place(relx=0.5, rely=0.77, anchor=CENTER)
 
 game_data = JSONParser().get_list("data/database.dat", False)
 

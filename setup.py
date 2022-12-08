@@ -45,7 +45,7 @@ def load_variables():
 
 
 WIDTH = 800
-HEIGHT = 600
+HEIGHT = 640
 MARGIN = 50
 VERSION = 0.4
 
