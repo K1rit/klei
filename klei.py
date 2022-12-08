@@ -161,7 +161,7 @@ def open_play_game():
         reset_level()
 
     def reset_level():
-        global buttons, word_labels, word_russian, height_string, label_level
+        global buttons, word_labels, word_russian, height_string, label_level, label_score_rec
         global button_escape, button_help, label_score, label_stress, label_category, label_stress_image
         global stress, button_reset, old_category
         global button_help, button_escape
@@ -205,6 +205,10 @@ def open_play_game():
             label_score.destroy()
         label_score = None
 
+        if label_score_rec is not None:
+            label_score_rec.destroy()
+        label_score_rec = None
+
         # Нужно сбросить всё угаданное, то есть "закрыть" открытые ранее буквы
         game_data[setup.level].reset_data()
 
@@ -222,7 +226,7 @@ def open_play_game():
         if label_level is None:
             label_level = tkinter.Label(window_play_game, text=f"Уровень: {setup.level + 1}", font=font_caption_text,
                                         background=MAIN_COLOR, foreground=TEXT_COLOR)
-            label_level.place(x=20, y=17)
+            label_level.place(relx=0.5, rely=0.90, anchor=CENTER)
 
         # Очки
         if label_score is None:
@@ -230,6 +234,13 @@ def open_play_game():
                                         font=font_caption_text,
                                         background=MAIN_COLOR, foreground=TEXT_COLOR)
             label_score.place(x=48, y=40)
+
+        # Рекорд
+        if label_score_rec is None:
+            label_score_rec = tkinter.Label(window_play_game, text=f"Рекорд: {setup.record}",
+                                 font=font_caption_text,
+                                 background=MAIN_COLOR, foreground=TEXT_COLOR)
+            label_score_rec.place(x=30, y=15)
 
         # Метка - название категории
         if label_category is None:
@@ -241,7 +252,7 @@ def open_play_game():
             # Если НОВАЯ категория, то звук гонга, иначе звук обыкновенного старта
             if old_category != game_data[setup.level].category:
                 Sound().play(Sound.GONG)
-                moving_category(label_category, label_category_x, 0.91)
+                moving_category(label_category, label_category_x, 0.92)
                 old_category = game_data[setup.level].category
             else:
                 Sound().play(Sound.OK_LETS_GO)
@@ -383,6 +394,11 @@ def open_play_game():
             buttons[num]['text'] = ":)"
             setup.score += 1
             label_score["text"] = f"Очки: {setup.score}"
+            if setup.score >= setup.record:
+                setup.record = setup.score
+                label_score_rec["text"] = f"Рекорд: {setup.record}"
+
+
         else:
             setup.score -= 3
             if setup.score < 0:
@@ -642,6 +658,7 @@ button_escape = None
 button_reset = None
 label_stress = None
 label_score = None
+label_score_rec = None
 label_category = None
 window_play_game = None
 label_level = None

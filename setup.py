@@ -24,6 +24,7 @@ def reset_file():
         f.write("stress=0\n")
         f.write("helper=3\n")
         f.write("score=0\n")
+        f.write("record=0\n")
         f.close()
     except:
         print("Ошибка записи файла.")
@@ -35,19 +36,21 @@ def save():
     f.write(f"stress={stress}\n")
     f.write(f"helper={helper}\n")
     f.write(f"score={score}\n")
+    f.write(f"record={record}\n")
     f.close()
 
 
 def load_variables():
-    global level, stress, helper, score
+    global level, stress, helper, score, record
     load_result = load()
     level = int(load_result['level'])
     stress = int(load_result['stress'])
     helper = int(load_result['helper'])
     score = int(load_result['score'])
+    record = int(load_result['record'])
 
 
-WIDTH = 800
+WIDTH = 900
 HEIGHT = 640
 MARGIN = 50
 VERSION = 0.4
@@ -101,7 +104,7 @@ level = None
 stress = None
 helper = None
 score = None
-
+record = None
 load_variables()
 
 
