@@ -41,6 +41,7 @@ def create_window(new_game=False):
 # Сброс всех настроек игры из ГЛАВНОГО ОКНА
 def reset_game(btn_repeat=None, btn_main_menu=None, lbl_game_over=None):
     setup.reset_file()
+    # setup.reset_record()
     setup.load_variables()
 
     for task in game_data:
@@ -146,7 +147,7 @@ def open_play_game():
         if label_win_round is not None:
             label_win_round.destroy()
 
-        setup.save()
+        setup.save_score_record()
 
         setup.level += 1
         if setup.level == len(game_data):
@@ -226,7 +227,7 @@ def open_play_game():
         if label_level is None:
             label_level = tkinter.Label(window_play_game, text=f"Уровень: {setup.level + 1}", font=font_caption_text,
                                         background=MAIN_COLOR, foreground=TEXT_COLOR)
-            label_level.place(relx=0.5, rely=0.90, anchor=CENTER)
+            label_level.place(relx=0.5, rely=0.905, anchor=CENTER)
 
         # Очки
         if label_score is None:
@@ -252,11 +253,11 @@ def open_play_game():
             # Если НОВАЯ категория, то звук гонга, иначе звук обыкновенного старта
             if old_category != game_data[setup.level].category:
                 Sound().play(Sound.GONG)
-                moving_category(label_category, label_category_x, 0.92)
+                moving_category(label_category, label_category_x, 0.925)
                 old_category = game_data[setup.level].category
             else:
                 Sound().play(Sound.OK_LETS_GO)
-                label_category.place(x=label_category_x, rely=0.91)
+                label_category.place(x=label_category_x, rely=0.925)
 
         #    button_exit = Button(window_play_game, text="Сбежать", font=font_button, command=window_play_game_destroy, width=10, pady=3)
         #    button_exit.place(relx=0.85, rely=0.9)

@@ -12,31 +12,63 @@ def load():
             ret[s[0]] = s[1]
     except FileNotFoundError:
         reset_file()
+        # reset_record()
         ret = load()
 
     return ret
 
 
+def reset_record():
+    try:
+        f = open("setup.dat", "a", encoding="UTF-8")
+        f.write("record=0\n")
+        f.close()
+    except:
+        print("Ошибка сохранения рекорда.")
+
+
 def reset_file():
+    import os
+    if os.path.isfile('setup.dat'):
+        load_result = load()
+    else:
+        load_result = dict()
+
+    if 'record' in load_result:
+        rec = int(load_result['record'])
+    else:
+        rec = 0
+
     try:
         f = open("setup.dat", "w", encoding="UTF-8")
         f.write("level=0\n")
         f.write("stress=0\n")
         f.write("helper=3\n")
         f.write("score=0\n")
-        f.write("record=0\n")
+        f.write(f"record={rec}\n")
         f.close()
     except:
         print("Ошибка записи файла.")
 
 
-def save():
+def save_score_record():
     f = open("setup.dat", "w", encoding="UTF-8")
     f.write(f"level={level}\n")
     f.write(f"stress={stress}\n")
     f.write(f"helper={helper}\n")
     f.write(f"score={score}\n")
     f.write(f"record={record}\n")
+    f.close()
+
+
+def save():
+    load_result = load()
+    f = open("setup.dat", "w", encoding="UTF-8")
+    f.write(f"level={level}\n")
+    f.write(f"stress={stress}\n")
+    f.write(f"helper={helper}\n")
+    f.write(f"score={load_result['score']}")
+    f.write(f"record={load_result['record']}")
     f.close()
 
 
@@ -106,7 +138,6 @@ helper = None
 score = None
 record = None
 load_variables()
-
 
 # print(state[level_state])
 # score = кол-во букв * 2
