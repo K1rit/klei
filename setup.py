@@ -44,7 +44,7 @@ def load_variables():
     helper = int(load_result['helper'])
 
 
-WIDTH = 800
+WIDTH = 700
 HEIGHT = 640
 MARGIN = 50
 VERSION = 0.4
