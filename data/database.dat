@@ -16,8 +16,8 @@
 					"words_ru": "Откройте пожалуйста, мне срочно надо у вас пожить"
 				},
 				{
-					"words_en": "Goodbye, I always hated you!",
-					"words_ru": "Прощайте, я вас всегда ненавидел!"
+					"words_en": "You talk and I lie down.",
+					"words_ru": "Вы рассказывайте, а я прилягу"
 				},
 				{
 					"words_en": "Who are you and why should I care?",
@@ -247,11 +247,11 @@
 			"WORDS": [
 				{
 					"words_en": "May the Force be with you",
-					"words_ru": "Да прибудет с тобой Сила"
+					"words_ru": "Да пребудет с тобой Сила"
 				},
 				{
-					"words_en": "You talk and I lie down.",
-					"words_ru": "Вы рассказывайте, а я прилягу"
+					"words_en": "Goodbye, I always hated you!",
+					"words_ru": "Прощайте, я вас всегда ненавидел!"
 				},
 				{
 					"words_en": "Oh, stop",

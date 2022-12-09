@@ -587,8 +587,8 @@ def open_authors():
     window_authors.grab_set()
 
     window_authors_x = int(window.winfo_screenwidth() - WIDTH * 0.55) // 2
-    window_authors_y = int((window.winfo_screenheight() - HEIGHT * 0.7) // 2)
-    window_authors.geometry(f"{int(WIDTH * 0.55)}x{int(HEIGHT * 0.9)}+{window_authors_x}+{window_authors_y}")
+    window_authors_y = int((window.winfo_screenheight() - HEIGHT * 0.8) // 2)
+    window_authors.geometry(f"{int(WIDTH * 0.55)}x{int(HEIGHT * 0.8)}+{window_authors_x}+{window_authors_y}")
     window_authors["bg"] = MAIN_COLOR
     window_authors.overrideredirect(1)
 
