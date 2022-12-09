@@ -152,7 +152,7 @@ def open_play_game():
         setup.level += 1
         if setup.level == len(game_data):
             win_game()
-            return "Alexey"
+            return False
 
         if setup.level > 0:
             if game_data[setup.level].category != game_data[setup.level - 1].category:
@@ -549,23 +549,32 @@ def open_play_game():
                 num_element += 1
 
     reset_level()
-# Правила игры
-def open_root():
-    def window_root_destroy():
-        Sound().play(Sound.BUTTON_PRESS)
-        window_root.destroy()
 
-    window_root = Toplevel()
-    window_root.grab_set()
+# Правила игры
+def open_rules():
+    def window_rules_destroy():
+        Sound().play(Sound.BUTTON_PRESS)
+        window_rules.destroy()
+
+    window_rules = Toplevel()
+    window_rules.grab_set()
 
     window_root_x = int(window.winfo_screenwidth() - WIDTH * 0.6) // 2
     window_root_y = int((window.winfo_screenheight() - HEIGHT * 0.7) // 2)
-    window_root.geometry(f"{int(WIDTH * 0.6)}x{int(HEIGHT * 0.7)}+{window_root_x}+{window_root_y}")
-    window_root["bg"] = MAIN_COLOR
-    window_root.overrideredirect(1)
+    window_rules.geometry(f"{int(WIDTH * 0.6)}x{int(HEIGHT * 0.9)}+{window_root_x}+{window_root_y}")
+    window_rules["bg"] = MAIN_COLOR
+    window_rules.overrideredirect(1)
 
-    butoon_exit_root = Button(window_root, text="Что?", font=font_button, command=window_root_destroy, width=10)
-    butoon_exit_root.place(relx=0.5, rely=0.5, anchor=CENTER)
+    butoon_exit_rules = Button(window_rules, text="А я алмаз, сыграю сейчас", font=font_button, command=window_rules_destroy)
+    butoon_exit_rules.place(relx=0.5, rely=0.93, width=300, anchor=CENTER)
+
+    label_rules_caption = Label(window_rules, text="ПРАВИЛА ИГРЫ:", font=font_authors_caption,
+                            justify=LEFT, background=MAIN_COLOR, foreground=YELLOW_COLOR)
+    label_rules_caption.place(relx=0.04, rely=0.05)
+
+    label_rules_text = Label(window_rules, text=setup.rules_text, font=font_authors_text,
+                            justify=LEFT, background=MAIN_COLOR, foreground=TEXT_COLOR)
+    label_rules_text.place(relx=0.04, rely=0.15)
 
 # Окно авторов
 def open_authors():
@@ -577,9 +586,9 @@ def open_authors():
     window_authors = Toplevel()
     window_authors.grab_set()
 
-    window_authors_x = int(window.winfo_screenwidth() - WIDTH * 0.6) // 2
+    window_authors_x = int(window.winfo_screenwidth() - WIDTH * 0.55) // 2
     window_authors_y = int((window.winfo_screenheight() - HEIGHT * 0.7) // 2)
-    window_authors.geometry(f"{int(WIDTH * 0.6)}x{int(HEIGHT * 0.9)}+{window_authors_x}+{window_authors_y}")
+    window_authors.geometry(f"{int(WIDTH * 0.55)}x{int(HEIGHT * 0.9)}+{window_authors_x}+{window_authors_y}")
     window_authors["bg"] = MAIN_COLOR
     window_authors.overrideredirect(1)
 
@@ -588,23 +597,23 @@ def open_authors():
 
     # KLEI
     label_app_name = ttk.Label(window_authors, text=application_name, font=font_authors_caption, background=MAIN_COLOR,
-                               foreground=TEXT_COLOR)
-    label_app_name.place(relx=0.03, rely=0.04)
+                               foreground=YELLOW_COLOR)
+    label_app_name.place(relx=0.05, rely=0.04)
 
     # Слоган, типа что-то того
     label_hard_text = ttk.Label(window_authors, text=hard_text, font=("Arial", 13, "bold"), background=MAIN_COLOR,
-                                foreground=TEXT_COLOR)
-    label_hard_text.place(relx=0.03, rely=0.15)
+                                foreground=LIGHT_BLUE_COLOR)
+    label_hard_text.place(relx=0.05, rely=0.15)
 
     # Текст об авторах
     label_text_authors = ttk.Label(window_authors, text=author_text, font=font_authors_text, background=MAIN_COLOR,
                                    foreground=TEXT_COLOR)
-    label_text_authors.place(relx=0.03, rely=0.27)
+    label_text_authors.place(relx=0.05, rely=0.27)
 
     # Сноска
     label_hard_text = ttk.Label(window_authors, text=note_text, font=("Arial", 9, "bold"), background=MAIN_COLOR,
-                                foreground=TEXT_COLOR)
-    label_hard_text.place(relx=0.03, rely=0.75)
+                                foreground=LIGHT_BLUE_COLOR)
+    label_hard_text.place(relx=0.05, rely=0.75)
 
 
 def quit_game():
@@ -632,8 +641,12 @@ window["bg"] = MAIN_COLOR
 image_stress = tkinter.PhotoImage(file='png/stress.png')
 image_smile = tkinter.PhotoImage(file='png/smile.png')
 image_cat_win_boc = tkinter.PhotoImage(file='png/bokser.png')
+
 label_version = ttk.Label(text=f"Версия {VERSION}", anchor="sw", background=MAIN_COLOR, foreground=TEXT_COLOR)
 label_version.place(relx=0.03, rely=0.9)
+
+label_main_record = ttk.Label(text=f"Рекорд: {setup.record}", anchor="sw", background=MAIN_COLOR, foreground=TEXT_COLOR)
+label_main_record.place(relx=0.8, rely=0.9)
 
 button_continue = Button(window, text="Продолжить", font=font_button, command=create_window, width=30, pady=3)
 button_continue.place(relx=0.5, rely=0.19, anchor=CENTER)
@@ -642,7 +655,7 @@ button_game = Button(window, text="Начать заново", font=font_button,
                      command=lambda new_game=True: create_window(new_game), width=30, pady=3)
 button_game.place(relx=0.5, rely=0.34, anchor=CENTER)
 
-button_root = Button(window, text="Правила", font=font_button, command=open_root, width=30, pady=3)
+button_root = Button(window, text="Правила", font=font_button, command=open_rules, width=30, pady=3)
 button_root.place(relx=0.5, rely=0.49, anchor=CENTER)
 
 button_exit = Button(window, text="Выход", font=font_button, command=quit_game, width=30, pady=3)
