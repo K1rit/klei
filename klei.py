@@ -548,6 +548,14 @@ def open_play_game():
                            width=width_key, height=height_key))
                 buttons[-1].place(x=start_x + j * (width_key * 20), y=HEIGHT // 1.6 + i * 50)
                 num_element += 1
+    # TODO DELETE THIS SHIT
+    def press_key(event):
+        letter = event.char.upper()
+        if letter in qwerty:
+            pressed_char(letter, qwerty.index(letter))
+
+    qwerty = "QWERTYUIOPASDFGHJKLZXCVBNM"
+    window.bind("<Key>", press_key)
 
     reset_level()
 
