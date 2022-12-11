@@ -634,7 +634,7 @@ POS_Y = window.winfo_screenheight() // 2 - HEIGHT // 6
 window.geometry(f"{int(WIDTH * 0.45)}x{int(HEIGHT * 0.45)}+{POS_X}+{POS_Y}")
 
 window.resizable(False, False)
-window.overrideredirect(1)
+window.overrideredirect(0)
 
 # Фоновый цвет в HEX
 window["bg"] = MAIN_COLOR
