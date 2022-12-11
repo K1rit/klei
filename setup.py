@@ -1,6 +1,3 @@
-import tkinter
-
-
 def load():
     ret = dict()
     try:
