@@ -1,4 +1,6 @@
 import json
+
+import setup
 from data.datatype import Datatype
 
 """
@@ -48,4 +50,4 @@ class JSONParser:
         return res
 
 if __name__ == "__main__":
-    n = JSONParser().get_list("database.dat", False)
+    n = JSONParser().get_list(setup.filename, False)

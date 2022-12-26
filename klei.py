@@ -556,6 +556,7 @@ def open_play_game():
                            width=width_key, height=height_key))
                 buttons[-1].place(x=start_x + j * (width_key * 20), y=HEIGHT // 1.6 + i * 50)
                 num_element += 1
+
     # TODO DELETE THIS SHIT
     def press_key(event):
         letter = event.char.upper()
@@ -685,7 +686,7 @@ button_exit.place(relx=0.5, rely=0.64, anchor=CENTER)
 button_authors = Button(window, text="Авторы", font=font_button, command=open_authors, width=30, pady=3)
 button_authors.place(relx=0.5, rely=0.79, anchor=CENTER)
 
-game_data = JSONParser().get_list("data/database.dat", False)
+game_data = JSONParser().get_list(f"data/{setup.filename}", False)
 
 label_stress_image = None
 button_help = None
