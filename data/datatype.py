@@ -41,6 +41,11 @@ class Datatype:
         tmp = self._words_en.upper()
         p1 = ord("A")
         p2 = ord("Z")
+
+        # Изменить для русского алфавита
+        # p1 = ord("А")
+        # p2 = ord("Я")
+
         for i in range(len(tmp)):
             if p1 <= ord(tmp[i]) <= p2:
                 self.enabled_chars.append(False)

@@ -31,7 +31,7 @@ def create_window(new_game=False):
     window_play_game_y = window.winfo_screenheight() // 2 - HEIGHT // 2
     window_play_game.geometry(f"{WIDTH}x{HEIGHT}+{window_play_game_x}+{window_play_game_y}")
     window_play_game["bg"] = MAIN_COLOR
-    window_play_game.overrideredirect(1)
+    window_play_game.overrideredirect(0)
 
     if new_game:
         reset_game()
@@ -494,6 +494,10 @@ def open_play_game():
         code_a = ord("A")
         code_z = ord("Z")
 
+        # Изменить для русского алфавита
+        # code_a = ord("А")
+        # code_z = ord("Я")
+
         for i in range(len(words_lines)):
 
             count_chars = len(words_lines[i])
@@ -531,6 +535,10 @@ def open_play_game():
         global buttons
 
         keyboard = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"]
+
+        # Изменить для русского алфавита
+        # keyboard = ["ЙЦУКЕНГШЩЗХЪ", "ФЫВАПРОЛДЖЭ", "ЯЧСМИТЬБЮ"]
+
         num_element = 0
         buttons = []
 
@@ -555,6 +563,10 @@ def open_play_game():
             pressed_char(letter, qwerty.index(letter))
 
     qwerty = "QWERTYUIOPASDFGHJKLZXCVBNM"
+
+    # Изменить для русского алфавита
+    # qwerty = "ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ"
+
     window.bind("<Key>", press_key)
 
     reset_level()
@@ -572,7 +584,7 @@ def open_rules():
     window_root_y = int((window.winfo_screenheight() - HEIGHT * 0.7) // 2)
     window_rules.geometry(f"{int(WIDTH * 0.6)}x{int(HEIGHT * 0.9)}+{window_root_x}+{window_root_y}")
     window_rules["bg"] = MAIN_COLOR
-    window_rules.overrideredirect(1)
+    window_rules.overrideredirect(0)
 
     butoon_exit_rules = Button(window_rules, text="А я алмаз, сыграю сейчас", font=font_button, command=window_rules_destroy)
     butoon_exit_rules.place(relx=0.5, rely=0.93, width=300, anchor=CENTER)
@@ -599,7 +611,7 @@ def open_authors():
     window_authors_y = int((window.winfo_screenheight() - HEIGHT * 0.8) // 2)
     window_authors.geometry(f"{int(WIDTH * 0.55)}x{int(HEIGHT * 0.8)}+{window_authors_x}+{window_authors_y}")
     window_authors["bg"] = MAIN_COLOR
-    window_authors.overrideredirect(1)
+    window_authors.overrideredirect(0)
 
     button_exit = Button(window_authors, text="ОК", font=font_button, command=window_authors_destroy, width=10)
     button_exit.place(relx=0.5, rely=0.90, anchor=CENTER)
@@ -642,7 +654,7 @@ POS_Y = window.winfo_screenheight() // 2 - HEIGHT // 6
 window.geometry(f"{int(WIDTH * 0.45)}x{int(HEIGHT * 0.45)}+{POS_X}+{POS_Y}")
 
 window.resizable(False, False)
-window.overrideredirect(1)
+window.overrideredirect(0)
 
 # Фоновый цвет в HEX
 window["bg"] = MAIN_COLOR
