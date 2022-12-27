@@ -4,12 +4,12 @@
 			"CATEGORY": "Категория 1. A",
 			"WORDS": [
 				{
-					"words_en": "audi alteram partem",
+					"words_en": "Audi alteram partem",
 					"words_ru": "выслушать обе стороны"
 				},
 				{
 					"words_en": "A pedibus usque ad caput",
-					"words_ru": " С ног до головы"
+					"words_ru": "С ног до головы"
 				},
 				{
 					"words_en": "Ab hoc et ab hac",
@@ -17,7 +17,7 @@
 				},
 				{
 					"words_en": "Actiones juris",
-					"words_ru": "юридические акты"
+					"words_ru": "Юридические акты"
 				},
 				{
 					"words_en": "Ad notam",
