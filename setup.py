@@ -160,8 +160,8 @@ score = None
 record = None
 load_variables()
 
-filename = "english_words.dat"
-# filename = "latine.dat"
+#filename = "english_words.dat"
+filename = "latine.dat"
 
 # print(state[level_state])
 # score = кол-во букв * 2
